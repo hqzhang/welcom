@@ -1,0 +1,4641 @@
+
+<html>
+<head>
+   <title>C/C++ | Lingfa Yang
+   </title>
+</head>
+
+<body bgcolor="#D2E4FC">
+
+<center><table style="width: 768px;" border="3" cellpadding="30"><tr><td background="bg_line.GIF">
+
+<center><h1>C/C++: Basic to Advanced</h1>
+<a href="../index.html">Lingfa Yang</a>
+</center>
+<hr/>
+When my friends consulted me C/C++ problems, I found some of their questions are great. 
+So I collect them, and put answers together to share with you. 
+If you have nice questions, or elegant codes to share, 
+doesn't matter which levels, 
+<a href="mailto:lingfa@brandeis.edu?Subject=Questions and codes&body=Hi Lingfa,">email</a>
+me please.
+Playing codes is my hobbit.
+<hr/>
+<a name="TOP"></a>
+<h2>Sample questions:</h2>
+<ul>
+<li>Swap: (warm-up questions)
+	<ul>
+	<li><a href="#swap">How do you swap (exchange) two integers?</a></li>
+	<li><a href="#swapP">Do you know how to swap two integers without declaring a third interger?</a></li>
+	<li><a href="#swapT">Have you ever used template for swapping?</a></li>
+	<li><a href="#swapQ">Is there any difference between pointer and reference parameters?</a></li>
+	<li><a href="#swapObj">How to swap two objects?</a></li>
+	</ul>
+</li><li>
+Function pointer:
+<ul><li>
+<a href="#funcptr">What is function pointer? What does it use for?</a>
+</li><li>
+<a href="#fptswitch">How to use function pointer to replace switch functions?</a>
+</li><li>
+<a href="#callback">What is callback function and later binding? </a>
+</li></ul>
+
+</li><li>const:
+	<ul>
+	<li><a href="#const">What does the keyword <code>const</code> use for? (Show me several examples)</a></li>
+	<li><a href="#const">Can you tell the difference between "<code>char *const ptr;</code>" and "<code>const char *ptr;</code>" ?</a></li>
+	<li><a href="#const">Can you tell the difference between "a constant pointer" and "a pointer which points to constant data"?</a></li>
+	<li><a href="#volatile">Have you ever heard a keyword "volatile"? What does it used for?</a></li>
+	<li><a href="#volatile">I know that a constant member function cannot modify any data members. Is there any exception?</a> (tricky question)</li>
+	</ul>
+</li>
+<li>C-style string:
+	<ul>
+	<li><a href="#stringAssign">How do you assign a string?</a> </li>
+<a href="#strcpy0">How do you make a string copy?</a>
+| <a href="#strend">Do you know that a string should end up by '\0'?</a> 
+| <a href="#boundayErr">Is there a boundary error of this for-loop?</a>
+
+	<li>Instead using functions in string.h, implement your own functions:
+<ol type="i">
+<li><a href="#strcpy">"strcpy" for string copy</a></li>
+<li><a href="#strlen">"strlen" for length,</a></li> 
+<li><a href="#strcmp">"strcmp" for two strings compare.</a></li>
+<li><a href="#itoa">"itoa" for an equivalent string of an integer number.</a></li>
+</ol>
+</li>
+	<li><a href="#stringReverse">How do you reverse a string without duplicating memory cost?</a></li>
+	<li><a href="#sReverse">How do you reverse a sentence without reversing letters in words? (use two pointers)</a></li>
+	<li><a href="#wordCount">Write a function, count how many words in a sentence.</a></li>
+	<li><a href="#wordExtract">Write a function to extract words from a sentence into an array.</a></li>
+	<li><a href="#charReplace">Write a function to replace all space-char by "%20".</a></li>
+	<li><a href="#charFreq">Which character is the most continuously occurring char in a string?</a></li>
+	<li><a href="#stringRep">String representation of a number, for example, -3.6 =&gt; "negative three point six". </a></li>
+	</ul>
+</li><li>
+QString (16 bit unicode character string)
+<ul><li>
+<a href="#QString">Initializing a String</a> 
+</li><li>
+<a href="#Indexing">Indexing/searching, indexOf, lastIndexOf</a>
+</li><li>
+<a href="#Extract">Extract substring: left(), mid(), and right() </a>
+</li><li>
+<a href="#Manipulating">Manipulating String Data: append(), prepend(), insert(), replace(), and remove(); 
+ </a><a href="#trimmed">trimmed(), simplified(), chop()</a>
+</li><li> 
+<a href="#Converting">Converting: toInt(), toDouble(), toLower(), toUpper(), toUtf8(), toAscii() </a>
+</li><li>
+<a href="#isNull">Querying String Data: startsWith() or endsWith(); contains(),  count(), isNull(), isEmpty() </a>
+</li><li>
+<a href="#split">Split and join</a>
+</li></ul>
+
+
+</li><li>Array:
+	<ul>
+	<li><a href="#negativeIndex">Does C/C++ allow a negative index?</a></li>
+	<li><a href="#Pointer12">Two ways of passing an array to a function as a parameter</a> 
+		| <a href="#indexing">Three ways of an element indexing</a></li>
+	<li><a href="#StarAnd">When do you use *&amp; ?</a></li>
+	<li><a href="#constPtr">constant pointers v.s. pointer variable</a></li>
+	<li><a href="#SortedArrayMerg">How do you merge two sorted arrays?</a></li>
+	<li><a href="#mArray">Multidimensional arrays</a></li>
+	<li><a href="#SpiralMat">Spiral initialization</a> 
+		| <a href="#MagicSquare">Magic Square</a></li>
+	</ul>
+</li>
+	
+<li>List:
+	<ul>
+	<li><a href="#listReverse">How do you reverse a list?</a></li>
+	<li><a href="#listCount">How do you count nodes in a linked list?</a></li>
+	<li><a href="#listTail">How do you get the last node of a linked list?</a></li>
+	<li><a href="#listCopy">How do you duplicate a list?</a></li>
+	<li><a href="#secondLastDel">How do you delete 2nd last occurrence of a integer from a singly linked list</a></li>
+	<li><a href="#listMerge">How do you merge two lists?</a></li>
+	</ul>
+</li>
+<li>Looped list:
+	<ul>
+	<li><a href="#LoopedList">How do you detect a list is looped or not? (two solutions at least)</a></li>
+	<li><a href="#LLTail">How do you get the last node (tail) of a list in general?<br/>(Beyond a normal list, it can be empty, or looped. Two solutions at least)</a></li>
+	<li><a href="#LLLength">How do you know the total length a looped list?</a></li>
+	<li><a href="#LLCount">How do you know how many nodes on the loop?</a></li>
+	<li><a href="#llBreak">How do you break up a looped list into a normal list without losing any node?</a></li>
+	</ul>
+</li>
+
+<li>A doubly linked list:
+	<ul>
+	<li><a href="#doublyLL">Advantage and disadvantage?</a></li>
+	<li><a href="#DLInsert">How do you insert a new node before a given node in a doubly linked list?</a></li>
+	<li><a href="#DLAppendix">How do you appendix a new node to a doubly linked list?</a></li>
+	<li><a href="#DLSort">How do you use a doubly linked list for sorting?</a></li>
+	</ul>
+</li>
+
+<li>Binary Trees:
+	<ul>
+	<li><a href="#bTree">Insertion sorting, complexity concern.</a></li>
+	<li><a href="#findMin">Find the minimum value of a tree.</a></li>
+	<li><a href="#findMax">Find the maximum value of a tree.</a></li>
+	<li><a href="#myTreeSort">Check a tree is sorted or not?</a></li>
+	</ul>
+</li>
+
+<li>Multiple children tree:
+<ul><li>Query methods:
+<a href="../xml/tree.html#Query">Query methods:</a> <code>parent(); name(); empty(); size(); 
+child(); firstChild(); lastChild(); 
+nextSibling(); previousSibling(); 
+node(); nodes(); contains(); 
+==(); !=()
+</code>
+
+</li><li>
+<a href="../xml/tree.html#Manipulation">Manipulation Methods:</a> <code>subtract(); del(); prepend(); rotate(); chop(); adopt();</code>
+</li><li>
+<a href="../xml/tree.html#Sort">Sort</a> | 
+<a href="../xml/tree.html#Save">Save</a> | 
+<a href="../xml/tree.html#walk">Walk</a>
+
+</li></ul>
+</li>
+
+<li>Sorting algorithm:
+	<ul>
+	<li><a href="#BubbleSort">Bubble sort</a> | <a href="#bTree">Binary tree sort</a> | <a href="#Quicksort">Quicksort</a></li>
+	<li><a href="#sortComp">Sorting methods comparison</a></li>
+	</ul>
+</li>
+
+<li>Iterator:
+	<ul>
+	<li><a href="#Iterator">What are iterators?</a></li>
+	<li><a href="#JavaSTL">What is the key difference between Java-style and STL-style iterators? Which one do you like?</a></li>
+	<li><a href="#PrePost">Is there any difference between prefix ++i and postfix i++ operators?</a></li>
+	</ul>
+</li>
+
+<li>OOP:
+	<ul>
+	<li><a href="#Constructors">What is a constructor? What is a desconstructor? inline initialization in constructor</a></li>
+	<li><a href="#cpconstructor">What is the difference between a copy constructor and an overloaded assignment operator?</a></li>
+	<li>Inheritance, modularity(abstraction, separation between interface and implementation), polymorphism, and encapsulation</li> 
+	<li><a href="#inheritance">Why inheritance?</a> | 
+		<a href="#Diamond">"Diamond problem" / virtual inheritance</a></li>
+	<li><a href="#cCast">Casting in C/C++, upCast and downCast; static and dynamic</a></li>
+	<li><a href="#vFunc">Virtual function</a> | <a href="#pureVF">pure virtual function</a> 
+	| <a href="#AbstractClass">abstract class =&gt; interface =&gt;coclass =&gt; COM =&gt; IDispatch</a></li>
+	<li><a href="#vdestructor">virtual destructor? | virtual constructor?</a> | 
+		<a href="../Qt/cpp/index.html#constructors"><font color="blue">public</font>, 
+		<font color="green">protected</font>, or 
+		<font color="red">private</font>
+		 constructors? </a>	
+	</li>
+	<li><a href="#overX">over<font color="red">load</font>, over<font color="red">ride</font></a>, <a href="../qt/cpp/index.html#overload"><font color="red">overload-and-override</font></a> </li>
+	<li><a href="#struct">struct</a> | <a href="#union">union</a> | class | <a href="#enum">enum</a> | <a href="#namespace">namespace</a></li>
+	<li><a href="#malloc">(new and delete) vs (malloc and free)</a></li>
+	<li><a href="#namespace">namespace</a></li>
+	<li><a href="#inline">What do you mean by inline function? </a></li>
+	<li><a href="#Exception">try, catch, and throw, Exception Handling</a></li>
+	<li><a href="uml/index.html">UML design</a></li>
+	</ul>
+</li>
+
+<li>Multithread:
+	<ul><li>
+	<a href="#mThread">thread and process | Difference between a thread and a process </a>
+	| <a href="#mThread">Multithread Synchronization</a>
+	| <a href="#CMultiLock">CMultiLock</a>
+	</li><li>
+	<a href="#Singleton"><blink>Singleton</blink> | thread safety | double-checked locking ...</a>
+	</li></ul>
+</li>
+
+
+<li>3D Math: (In mathematics you don't understand things. You just get used to them.
+--Johann von Neumann)
+	<ul>
+	<li><a href="#3DMath">vector basic</a>  | <a href="point.html">point template</a></li>
+	<li><a href="#Dist2Line">Distance of a point to a line</a></li>
+	<li><a href="#Dist2Seg">Distance of a point to a line segment</a></li>
+	<li><a href="#Dist2Lines">Distance between two lines</a></li>
+	<li>How do you know 4 points are coplane or not?</li>
+	<li><a href="#sqMatrix">Square Matrix: Determinant, Transpose, Adjoint, Inverse, Eigenvalues</a></li>
+	<li><a href="#Affine">Affine Transformations: Translation, Rotation, Scaling, Reflection, and Shear</a></li>
+	<li><a href="#Trackball">Trackball rotation controller: quaternion algebra, convert to rotation matrix</a></li>
+	<li><a href="#paramCurve">Parametric Curves</a></li>
+	<li><a href="#NURBS">NURBS</a> | Voxel (Volumetric and pixel) | Mesh</li>
+</ul>
+
+</li><li>
+	Shader:
+	<ul>
+	<li>What is the difference of a point and a vertex? (location + render info)</li>
+	<li><a href="#vertexShader">Vertex shaders v.s. pixel shaders</a></li>
+	<li><a href="#ZBuffering">Z buffer (depth)</a> | <a href="#AlphaBlending">Alpha blending</a> | light and material, surface models </li>
+	<li>fixed-function pipeline (FFP) | color(vector) pipe and alpha (scalar) pipe</li>
+	</ul>
+</li><li>
+<a href="#drawClock"><img src="clockhands.gif" align="right"border="0"/></a>
+
+Bitwise logical operator:
+	<ul>
+	<li><a href="#PowerOfTwo">Give a one-line C expression to test whether a number is a power of 2</a></li>
+	<li><a href="#div7">divide (multiply) by seven without the use of the divide (multiply ) operators</a></li>
+	</ul>
+</li>
+	
+<li>Others:
+	<ul><li>
+	Check if a number is prime or not.
+	</li><li>
+	Given the time, devise an algorithm to calculate the angle between the hour and minute hands of an analog clock.
+[ <a href="mailto:lingfa@brandeis.edu?Subject=clockHands.cpp&amp;body=Hi Lingfa, How to calculate the angle between the hour and minute hands of an analog clock?">(60h-11m)/2</a> ]
+	</li><li>
+	<a href="#drawClock">How to draw an analog clock?</a>
+	</li><li>
+	Recursion functions: <a href="#Recursion">Factorial</a> | <a href="#Recursion">Fabonacci</a>
+	</li><li>
+	<a href="#Unicode">Unicode | UTF-8 | GB 2312</a> 
+
+	</li><li>	
+	<a href="#APIs">Win32 APIs, GDI, GDI+</a>
+	
+	</li><li>	
+	<a href="http://en.wikipedia.org/wiki/Grid_computing">Grid computing</a>: 
+	The key distinction between clusters and grids is mainly lie in the way resources are managed. 
+	In case of clusters, the resource allocation is performed by a centralised resource manager and 
+	all nodes cooperatively work together as a single unified resource. In case of Grids, each node has its 
+	own resource manager and don't aim for providing a single system view. 
+	| Desktop Bus (<a href="http://en.wikipedia.org/wiki/D-Bus">D-Bus</a>) is the 
+	new Inter-process communication (<a href="http://en.wikipedia.org/wiki/Inter-process_communication">IPC</a>) system
+
+	
+	</li></ul>
+</li><li>Automation:
+	<ul><li>
+	<a href="#Automation">What is Automation?</a>
+	</li></ul>
+</li><li>I/O
+	<ul><li>
+	What is CRT? What does "deprecated" mean? How to eliminate deprecation warnings? Security Enhancements?
+	</li><li>
+	Use secure version <code>fopen_s, _wfopen_s</code> intead of <code> fopen, _wfopen</code>
+	</li><li>
+	Encoding: ANSI, UTF-8, and UTF-16LE; Byte Order Mark (BOM)
+	</li></ul>
+	
+</li></ul>
+
+<hr/>
+
+
+<ol>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="swap"></a>
+<li><b>How do you swap two variables?</b>
+<ol type="i"><li>Swap two integers:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+swap(int &amp;a, int &amp;b)
+{
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int a=2,b=3;
+	swap(a,b); // result in a=3 and b=2
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<li><b>Wrong swap due to Call-by-Value!</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+void swap(int i, int j)
+{
+	int tmp = i;
+	i = j;
+	j = tmp;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+void main()
+{
+	int a=2,b=3; 
+	swap(a,b); // nothing change
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="swapP"></a>
+<li>Tricky question: <b>Do you know how to swap two integers without declaring a third interger?</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+swap(int &amp;a, int &amp;b)
+{
+	a += b;
+	b = a - b;
+	a -= b;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int a=2,b=3;
+	swap(a,b); // result in a=3 and b=2
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="swapT"></a>
+<li>In general, you can use template for swapping (<b>swap by using reference parameters</b>):
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template  &lt;class T>
+void swap(T &amp;a, T &amp;b)
+{
+	T tmp = a;
+	a = b;
+	b = tmp;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int a=2,b=3;
+	swap(a,b); // result in a=3 and b=2
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<li><b>Using pointer parameters for swapping.</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template  &lt;class T>
+void swap(T *a, T *b)
+{
+	T tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int a=2,b=3;
+	swap(&amp;a,&amp;b); // result in a=3 and b=2
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="swapQ"></a>
+<li><b>Is there any difference between the two versions of swapping by using the pointer and reference parameters?
+Which one do you like?</b>
+</li>
+
+<a name="swapObj"></a>
+<li>How to swap two objects?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A			// base
+{
+public:
+	A(){m=0;n=2;};	// constructor
+protected:
+	int m,n;	// members
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class B : public A	// derived
+{
+public:
+	B(){m=1;n=3;};	// constructor
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	A *ptrA = new A;
+	A *ptrB = new B;
+
+	swap(ptrA,ptrB);
+
+	delete ptrA; delete ptrB;
+}
+</pre></td></tr></tbody></table>
+
+// Both work, but addresses after swap will be different!
+
+<table border="2" cellpadding="10"><tbody>
+<tr><td>Case 1: by pointer parameters</td><td>Case 2: by reference parameters</td></tr>
+
+<tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template  &lt;class T &gt;
+void swap(T *a, T *b)
+{
+	T tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+</pre></td>
+<td style="text-align: left; background-color: rgb(184, 255, 255);"><pre>
+template  &lt;class T&gt;
+void swap(T &amp;a, T &amp;b)
+{
+	T tmp = a;
+	a = b;
+	b = tmp;
+}
+</pre></td></tr>
+
+<tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Before:
+-	ptrA	0x00780eb0
+	m	0
+	n	2
+-	ptrB	0x00780e70
+	m	1
+	n	3
+
+After:
+-	ptrA	0x00780eb0
+	m	1
+	n	3
+-	ptrB	0x00780e70
+	m	0
+	n	2
+</pre></td>
+<td style="text-align: left; background-color: rgb(184, 255, 255);"><pre>
+Before:
+-	ptrA	0x00780eb0
+	m	0
+	n	2
+-	ptrB	0x00780e70
+	m	1
+	n	3
+
+After:
+-	ptrA	0x00780e70
+	m	1
+	n	3
+-	ptrB	0x00780eb0
+	m	0
+	n	2
+</pre></td></tr>
+
+<tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+&amp; tmp is an address
+ which hold the member values.
+-	&amp; tmp	0x0065fd60
+	m	0
+	n	2
+</pre></td>
+<td style="text-align: left; background-color: rgb(184, 255, 255);"><pre>
+tmp itself is an address 
+ which has two members.
+-	tmp	0x00780eb0
+	m	0
+	n	2
+</pre></td></tr>
+
+<tr><td colspan="2" rowspan="1">
+<pre>
+Compare with: int a=2,b=3;
+</pre></td></tr>
+
+<tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Usage:	swap(&amp;a,&amp;b);
+</pre></td>
+<td style="text-align: left; background-color: rgb(184, 255, 255);"><pre>
+Usage:	swap(a,b);
+</pre></td></tr>
+
+<tr><td colspan="2" rowspan="1"><pre>
+Same role: where "tmp" is a third integer, holding "a" temporally 
+</pre></td></tr>
+
+</tbody></table>
+
+</li>
+<li>Wrong!
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+void main()
+{
+	A objA;
+	B objB;
+//	swap(&amp;objA,&amp;objB); // compiler fail: template parameter 'T' is ambiguous
+	swap(&amp;objA,&amp;(A)objB); // result is not correct ! See below.
+}
+</pre></td></tr></tbody></table>
+// Output
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+Before:
+-	objA	{...}
+	m	0
+	n	2
+-	objB	{...}
+-	A	{...}
+	m	1
+	n	3
+After:
+-	objA	{...}
+	m	1
+	n	3
+-	objB	{...}
+-	A	{...}
+	m	1
+	n	3
+</pre></td></tr></tbody></table>
+
+</li>
+</ol></li>
+
+<a name="stringAssign"></a>
+<li>Wrong assignment
+<p>Fail to compile:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+char s1[] = "Hello";
+char s2[20]; 
+
+s2 = s1; // error C2440: '=' : cannot convert from 'char [6]' to 'char [20]'
+// Because s2 is a pointer constant, not a pointer variable!
+</pre></td></tr></tbody></table>
+</p>
+
+<p>How about this?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+	char *s1 = new char [20];
+	char *s2 = new char [20]; 
+
+	strcpy(s1,"Hello");
+	s2 = s1; // be careful !
+
+	delete []s1;
+	// Now how about s2 ?
+</pre></td></tr></tbody></table>
+</p>
+
+<p>Make a true copy by memcpy:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	char *s1 = new char [20];
+	char *s2 = new char [20]; 
+
+	strcpy(s1,"Hello");
+	memcpy(s2,s1,20);	
+//	void *memcpy( void *dest, const void *src, size_t count );
+//	returns the value of dest.
+</pre></td></tr></tbody></table>
+</p>
+</li>
+
+
+<a name="strcpy0"></a>
+<li><b>Some string copy problems:</b>
+<ol type="i">
+<li>True copy or not?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+	char s1[] = "Hello world.";
+	char *s2 = new char[20];
+//	s2 = s1;	// true copy or not?
+	strcpy(s2,s1);	// This is a true copy
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<li>memcpy, a true copy.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+	int a1[] = {1,3,5,7,9};
+	int a2[10];
+
+//	a2 = a1; // Wrong
+
+	memcpy(a2,a1, 2*sizeof(int)); // first 2 elements of a1 to a2
+
+	memcpy(a2+5,a1+2, 3*sizeof(int)); 
+	// from 3th of a1 copy three to a2[5],a2[6], and a2[7]
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<li>strcpy for string initialization
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+char string[80]; 
+strcpy( string, "Hello world from " ); 
+</pre>
+</td></tr></tbody></table>
+</li>
+
+
+<a name="strend"></a>
+<li>An interview question: Is there anything wrong with the following code?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(255, 200, 200);"><pre>
+void Test() 
+{
+	char s1[5], s2[5]; 
+	for(int i=0; i &lt; 5; i++) 
+	{
+		s1[i] = 'a' + i; 
+	}
+	strcpy(s2, s1);
+	int n = strlen(s1);
+// Question 1: s1=?, n=?
+// Question 2: s2=?, why ?
+// Question 3: Rewrite the code for a 5-character string
+}
+</pre></td></tr></tbody></table>
+
+<ul>
+	<li>Answer 1: I am pretty sure that the first five characters in s1 are "abcde", but follows by junk. n is unknown.</li>
+	<li>Answer 2: s2 is unpredictable. The key point is s1 should end by \0'. Without \0' strcpy cannot work properly, and it may cause program crash. </li>
+	<li>Answer 3: 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void Test() 
+{
+	char s1[6], s2[6]; s1[5] = '\0';
+	for(int i=0; i&lt;5; i++) 
+	{
+		s1[i] = 'a' + i; 
+	}
+	int n = strlen(s1); 	// =5
+	strcpy(s2, s1);		// s1=s2="abcde";
+}
+</pre></td></tr></tbody></table>
+</li></ul>
+
+</li><li>
+<a name="boundayErr">Is there a boundary error of this for-loop?</a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+  std::string s1 = "abc";
+  std::string s2; s2.reserve(s1.size());
+  for (unsigned int i = s1.size() - 1; i &gt; 0; -- i) {
+    s2 += s1[i];
+  }
+</pre></td></tr></tbody></table>
+(remove unsigned)
+
+</li></ol>
+</li>
+
+<a name="strcpy"></a>
+<li>Your own version of strcpy
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+char * strcpy( char *dest, const char *src ) 
+{
+	ASSERT( (dest != NULL) &amp;&amp; (src != NULL) );
+	char *tmp = dest; 
+	while( (*dest++ = *src++) != '\0' );
+	return tmp; 
+} 
+</pre></td></tr></tbody></table>
+</li>
+
+
+<li>Length of a string
+<ol type="i">
+<li>strlen in "string.h"
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+   char buffer[61] = "How long am I?";
+   int  len = strlen( buffer ); // output is 14
+</pre></td></tr></tbody></table>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="strlen"></a>
+<p>If you wish to count the length by yourself, 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int strlen(char *s)
+{
+	char *s0 = s;
+	while(*s != '\0') // symbol of end a string
+		s ++;
+	return s - s0;
+}
+</pre></td></tr></tbody></table>
+
+Question: Does this counting work? Yes.  
+</p>
+</li>
+
+<li>strcmp in "string.h"
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int strcmp( const char *string1, const char *string2 );
+
+&lt; 0 string1 less than string2 
+0 string1 identical to string2 
+> 0 string1 greater than string2
+</pre></td></tr></tbody></table>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="strcmp"></a>
+<p>If on your own
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int strcmp(char *s1, char *s2)
+{
+	while (*s1 == *s2)
+	{
+		if(*s1 == '\0') return 0; // Identical
+		s1++;
+		s2++;
+	}
+	return *s1 - *s2;
+}
+</pre></td></tr></tbody></table>
+</p>
+</li>
+</ol>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+
+<h5>QString:</h5>
+<ol type="i"><li>
+<a name="QString">Initializing a String</a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString str = "Hello QString"; 
+	QString space(5, ' '); // 5 white-space
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="Indexing"></a>
+Indexing: The at() function can be faster than operator[](), because it never causes a deep copy to occur.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	str.at(0) == 'H'; 
+	str[0] == 'H'; 
+	int ll = str.indexOf("ll"); // 2
+
+	QString s = "the minimum";
+	s.indexOf(QRegExp("m[aeiou]"), 0); // 4 for mi
+	
+	QString x = "crazy azimuths";
+	QString y = "az";
+	x.lastIndexOf(y);           // returns 6
+	x.lastIndexOf(y, 6);        // returns 6
+	x.lastIndexOf(y, 5);        // returns 2
+	x.lastIndexOf(y, 1);        // returns -1 	
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="Extract"></a>
+Extract substring:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString left = str.left(5); // "Hello"; 
+	QString right = str.right(3); // "ing"; 
+	QString mid = str.mid(4,3); //  "o Q" take (pos and len=-1)
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<a name="Manipulating"></a>
+Manipulating String Data: append(), prepend(), insert(), replace(), and remove().  
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString str = "and";
+	str.prepend("rock ");	// str == "rock and"
+	str.append(" roll");	// str == "rock and roll"
+	str.replace(5, 3, "&amp;");	// str == "rock &amp; roll" 
+	
+	QString x = "Say yes!";
+	QString y = "no";
+	x.replace(4, 3, y); // x == "Say no!" 
+	
+	QString eng = "colour behaviour flavour neighbour";
+	eng.replace(QString("ou"), QString("o"));
+	// str == "color behavior flavor neighbor" 
+	
+	QRegExp rx("&amp;(?!amp;)");      // match ampersands but not &amp;
+	QString line2 = "His &amp;amp; hers &amp; theirs";
+	line2.replace(rx, "&amp;amp;");
+	// line2 == "His &amp;amp; hers &amp;amp; theirs" 	
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="trimmed"></a>
+<b>trimmed()</b> (Returns a string that has whitespace removed from the start and the end. ) 
+<br/><b>simplified()</b> (Returns a string that has whitespace removed from the start and the end, and that has each sequence of internal whitespace replaced with a single space. )
+<br/><b>chop()</b> (Removes n characters from the end of the string.)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString s1 = "  lots\t of\nwhitespace\r\n ";
+	s1 = s1.trimmed(); // "lots\t of\nwhitespace"
+
+	QString s2 = "  lots\t of\nwhitespace\r\n ";
+	s2 = s2.simplified();// "lots of whitespace"; 
+	
+	QString str("LOGOUT\r\n");
+	str.chop(2); // "LOGOUT" 
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="isNull"></a>
+Distinction Between Null and Empty Strings 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString().isNull();               // returns true
+	QString().isEmpty();              // returns true
+
+	QString("").isNull();             // returns false
+	QString("").isEmpty();            // returns true
+
+	QString("abc").isNull();          // returns false
+	QString("abc").isEmpty();         // returns false 
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<a name="split"></a>
+split and join
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QString str; QStringList list;
+	
+	str = "Some  text\n\twith  strange whitespace.";
+	list = str.split(QRegExp("\\s+")); // matches a whitespace
+	// list: [ "Some", "text", "with", "strange", "whitespace." ] 
+
+	str = "This time, a normal English sentence.";
+	list = str.split(QRegExp("\\W+"), QString::SkipEmptyParts); //  matches a non-word character
+	// list: [ "This", "time", "a", "normal", "English", "sentence" ] 
+	QString newStr = list.join(" ");
+</pre></td></tr></tbody></table>
+
+
+
+</li></ol>
+
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<li><a name="itoa"></a>
+<p><b>Implement itoa() to compute the string equivalent of an integer number.</b> For example,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+value=-1234, string="-1234".
+</pre></td></tr></tbody></table>
+// Test
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int value = -1234;
+	char *s = itoa(value);
+	printf("value=%d, string=\"%s\".", value, s);
+	delete []s;
+}
+</pre></td></tr></tbody></table>
+<b>Implementation idea:</b> <i>value % 10 + '0' </i> changes the last digit to a char, 
+then divided by 10 and repeat to get a reverse string, then, reverse the string into normal
+( Solved. <a href="mailto:lingfa@brandeis.edu?Subject=Can you send me the code: itoa.cpp&body=Hi Lingfa,">ask for optimized code</a> )
+
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="charReplace"></a>
+<li><p><b>Write a function to replace all space-char by "%20".</b>
+(Assume that there is enough free memory at the end of the string.)
+( <a href="charReplace.cpp">Solved.</a> Idea is backward shift and replacement)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void charReplace(char *s, char ch, char *wedge)
+{
+	int n = strlen(s);
+	int count = 0;
+	char *ptr=s;
+	while(*ptr != '\0') // char end
+	{
+		if(*ptr == ch)
+			count ++;
+		ptr ++;
+	}
+
+	if(count == 0) return; // not found any
+
+	int m = strlen(wedge);
+	int j = n + (count-1)*m;
+        for(int i=n; i &gt;= 0; i--)
+	{	// s+n is '\0'
+		if( *(s+i) != ch)
+		{
+			// shift
+			*(s+j) = *(s+i);
+			j --;
+			continue;
+		}
+
+		// replace
+                for(int k = m-1; k &gt;= 0; k--)
+		{
+			*(s+j) = *(wedge+k);
+			j --;
+		}	
+	}
+}
+</pre></td></tr></tbody></table>
+// Test case
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	char *s = new char [128];
+	strcpy(s,"This is my laptop.");
+	cout &lt;&lt;  s &lt;&lt; endl;
+
+	charReplace(s,' ', "%20");
+	cout &lt;&lt;  s &lt;&lt; endl;
+
+	delete []s;
+}
+</pre></td></tr></tbody></table>
+// output
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+This is my laptop.
+This%20is%20my%20laptop.
+</pre></td></tr></tbody></table>
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="charFreq"></a>
+<li><p><b>Which character is the most continuously occurring char in a string?</b> 
+Return the frequency count, and a pointer which points to the 1st char. For example,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 225, 225);"><pre>
+Within string:"aaabbbbcddeddddddfg",
+the most continuously occurring char is 'd', count 6 times.
+The location index is 11
+</pre></td></tr></tbody></table>
+// <a href="charFreq.cpp">Test case</a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 225, 225);"><pre>
+void main()
+{
+	char s[]="aaabbbbcddeddddddfg";
+	char *ptr = NULL; 
+	int n = charFreq(s, ptr);
+	int index = ptr-s; // gives the location index
+	cout &lt;&lt; "Within string:\"" &lt;&lt; s &lt;&lt; "\"," &lt;&lt; endl;
+	cout &lt;&lt; "the most continuously occurring char is '" &lt;&lt; *ptr 
+		&lt;&lt; "', count " &lt;&lt; n &lt;&lt; " times." &lt;&lt; endl;
+	cout &lt;&lt; "The location index is " &lt;&lt; index &lt;&lt; endl;
+}
+</pre></td></tr></tbody></table>
+// Implementation
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int charFreq(char *s, char *&amp;p)
+{
+	p = s;		// target location
+	int n=0;	// target length
+	char *p0;	// potential location
+	int count;	// potential length
+	
+	while(*s != '\0')	// end of the string
+	{
+		count = 0;	// initial
+		p0 = s;
+		while(*s == *p0)
+		{
+			count ++;
+			s ++;
+		}
+
+                if(count &gt; n)   // update
+		{
+			p = p0; 
+			n = count;
+		}
+	}
+	return n;
+}
+</pre></td></tr></tbody></table>
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="stringReverse"></a>
+<li><b>Reverse a string</b> (Idea: two pointers point to the two ends, swap char, and move toward the center)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+#include "stdafx.h"
+#include "string.h"
+
+void reverse(char *s, int len=-1)
+{
+	if(*s == '\0') return;
+	if(len == -1) len = strlen(s); 
+
+	char *start=s;
+	char *end = s + len - 1;
+	char tmp;
+        while(end&gt;start)
+	{
+		tmp = *end;
+		*end = *start;
+		*start = tmp;
+		start++;
+		end--;
+	}
+}
+
+void main()
+{
+	char str[]="hello";
+	reverse(str); // "olleh"
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="negativeIndex"></a>
+<li><p><b>Does C/C++ allow a negative index?</b> Of course!
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+        int a[]={1,3,5,7,9}, *b=&amp;a[2];
+
+	int c = b[-1];	// 3
+	int d = b[0];	// 5
+	int e = b[1];	// 7
+</pre>
+</td></tr></tbody></table>
+Two ways of passing an array to a function, for example *a, or a[],
+<a name="Pointer12"></a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void sort1(int *a, int len);
+void sort2(int a[], int len);
+</pre></td></tr></tbody></table>
+
+<a name="indexing"></a>
+Three ways of an element indexing, for example,
+<a name="Pointer12"></a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int value = a[2];
+int value = *a + 2;
+int value = 2[a];
+</pre></td></tr></tbody></table>
+
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="StarAnd"></a>
+<li><b>When do you use *&amp; ?</b>
+<p>
+Can you please write a set function calculate one period of y=sin(x), 
+bring back x and y in 1-dimensional array, and 
+number of points which you decide to use for calculation?
+</p>
+Answer 1: (General mistake, Wrong Version, Credit: 0%)
+<table border="0" cellpadding="10" ID="Table1"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int set(double *x, double *y)
+{
+	int n = 100;
+	x = new double [n];
+	y = new double [n];
+	for(int i=0; i&lt;n; i++)
+	{
+		x[i] = i/n*2*3.14;
+		y[i] = sin(x[i]);
+	}
+ 	return n;
+}
+</pre></td></tr></tbody></table>
+
+Answer 2: (Ok version, Credit: 60%)
+<p>
+</p>
+
+Answer 3: (Perfect version, Credit: 100%)
+<table border="0" cellpadding="10" ID="Table2"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+bool set(double *&amp;x, double *&amp;y, int &amp;n)
+{
+	n = 100;
+	x = new double [n]; if(!x) return false;
+	y = new double [n]; if(!y) {delete []x; return false;}
+	for(int i=0; i&lt;n; i++)
+	{
+		x[i] = i*2*3.14/n;
+		y[i] = sin(x[i]);
+	}
+	return true;
+}
+</pre></td></tr></tbody></table>
+
+Test case:
+<table border="0" cellpadding="10" ID="Table3"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	double *x, *y; int n;
+	if(set(x,y,n))
+	{
+		delete []x;
+		delete []y;	
+	}
+}
+</pre></td></tr></tbody></table>
+
+</li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="constPtr"></a>
+<li>Say their difference between a1, a2 and a3.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void modify(int *a)
+{
+	a[0] += 1;
+}
+void main()
+{
+	int a1[]={1,3,5,7};
+	int a2[4]; 
+	int *a3 = new int [4];
+
+	memcpy(a2,a1,4*sizeof(int));
+	memcpy(a3,a1,4*sizeof(int));
+
+	modify (a1); // a1[0] = 2;
+	modify (a2); // a2[0] = 2;
+	modify (a3); // a3[0] = 2;
+
+	*(a3+2) = 4; // a3[2] = 4
+	*(a2+2) = 4; // a2[2] = 4
+	*(a1+2) = 4; // a1[2] = 4
+
+	delete []a3;
+}
+</pre></td></tr></tbody></table>
+
+<ol type="i">
+<li>a1 and a2 are constant pointers, but a3 is not. a3 is a pointer variable. </li>
+<li>Memory of a3 is allocated dynamically. 
+It must be freed explicitly (delete []a3;). 
+Otherwise, a memory leak would result.  
+</li>
+</ol>
+</li>
+
+
+
+<li>ADT?
+<p>Abstract data type (ADT) is a mathematical specification of a set of data or data operations.
+ADTs include String, List, Stack, Queue, Binary search tree, Priority queue, Complex number.
+</p></li>
+
+
+<li><b>List</b>
+
+<table>
+<td>A linked list</td>
+<td><img src="list0.GIF" alt="img"  border="0" align="top"/></td>
+</table>
+
+<ol type="i">
+<li>Declaration a list node:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class list 
+{
+public:
+	list(int i, list* l):value(i), next(l){};
+	int value;
+	list *next;
+};
+</pre></td></tr></tbody></table>
+</li>
+
+<li>Insert(push) a node on top.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+list *push(int i, list *l)
+{
+	return new list(i,l);
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="listReverse"></a>
+<li><b>How do you reverse a list?</b> (this is a good interview question! If you have good one to share with me please 
+<a href="mailto:lingfa@brandeis.edu&amp;Subject=a good interview question&body=Hi Lingfa,">email</a> me.)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+list *reverse(list *l)
+{
+	list *last = NULL;
+	list *next;
+	while(l)
+	{
+                next = l-&gt;next; // temp store 
+
+                l-&gt;next = last; // modify
+		last = l;	// update
+
+		l = next; // Move on
+	}
+	return last;
+}
+</pre></td></tr></tbody></table>
+
+<p>Test run:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	// build a sample of list
+	list *l = NULL;
+	for(int i=0; i&lt;5; i++)
+		l = push(i,l);
+
+	printList(l);	// [4, 3, 2, 1, 0, ]
+	l = reverse(l); 
+	printList(l);	// [0, 1, 2, 3, 4, ]
+	l = reverse(l);
+	printList(l);	// [4, 3, 2, 1, 0, ]
+
+	empty(l); // Release all
+}
+</pre></td></tr></tbody></table>
+</p></li>
+
+
+<a name="listCopy"></a>
+<li>How do you duplicate a list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+list *listCopy(list * l)
+{
+	if(!l) return NULL;
+//	Should have at least one node.
+	list *newList  NULL;
+	while(l)
+	{
+                newList = push(l-&gt;value, newList); 
+                // a deep copy of all attributes should be concerned here.
+                l=l-&gt;next;
+	}
+	return reverse(newList);
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<li>How do you print out a list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+void printList(list*l)
+{	
+	printf("[");
+	while(l)
+	{
+                printf("%d, ",l-&gt;value);
+                l = l-&gt;next;
+	}
+	printf("]\n");
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<li>How do you dump a list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+list* pop(list *l)
+{
+	list *top = l;
+        l = l-&gt;next; // move down
+	delete top;	// release memory
+	return l;
+}
+
+void empty(list *l)
+{
+	while(l)
+		l = pop(l);
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="listCount"></a>
+<li>Count how many nodes in a list.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+int size(list *l)
+{
+	int count=0;
+	while(l)
+	{
+		count ++;
+                l = l-&gt;next;
+	}
+	return count;
+}
+</pre></td></tr></tbody></table>
+<p>How do you count the distance between two given nodes?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int LengthBetween(list *node1, list *node2=NULL)
+{
+	int count=0;
+	while(node1 != node2)
+	{
+		count ++;
+                node1 = node1-&gt;next;
+	}
+	return count;
+}
+// Notice that if the second argument is skipped, 
+which is exactly the same above. 
+</pre></td></tr></tbody></table>
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="listTail"></a>
+<li><p><b>How do you get the last node of a linked list?</b> 
+[A list ends up with NULL. 
+A challenge question is if the list is looped, 
+where the last node points certain previous node 
+(which can be, but not necessary to be, the head node), 
+How do you find the last node? ]
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+list *getTail(list *l)
+{
+        while(l-&gt;next)
+                l = l-&gt;next;
+	return l;
+}
+</pre>
+</td></tr></tbody></table>
+</p></li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="secondLastDel"></a>
+<li><p><b>How do you delete 2nd last occurrence of a integer from a singly linked list?</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void secondLastDel(list *&amp;head, int key)
+{
+	// <a href="mailto:lingfa@brandeis.edu&amp;Subject=SecondLast.cpp">Solved</a>
+}
+</pre></td></tr></tbody></table>
+// Test cases
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	list *l = NULL;
+	l = push(0,l);
+	l = push(1,l);
+	l = push(2,l);
+	l = push(3,l);
+	l = push(2,l);
+	l = push(4,l);
+	l = push(2,l);
+
+	printList(l);
+
+	secondLastDel(l,2);
+	printList(l);
+
+	secondLastDel(l,2);
+	printList(l);
+
+	secondLastDel(l,2);
+	printList(l);
+
+	empty(l); // Release all
+}
+</pre></td></tr></tbody></table>
+// Output
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+[2, 4, 2, 3, 2, 1, 0, ]
+[2, 4, 3, 2, 1, 0, ]
+[4, 3, 2, 1, 0, ]
+[4, 3, 2, 1, 0, ]
+</pre></td></tr></tbody></table>
+</p></li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="listMerge"></a>
+<li><p><b>How do you merge two lists? </b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	void list::merge(list *l)
+	{
+                list *tail = this-&gt;getTail(this);
+                tail-&gt;next = l;
+	};
+//	Test
+//	L1=[4, 3, 2, 1, 0, ]
+//	L2=[6, 4, 2, ]
+	L1.merge(L2);	// L1=[4, 3, 2, 1, 0, 6, 4, 2, ]
+</pre></td></tr></tbody></table>
+</p></li>
+
+<li>How do you sort a list? Time complexity is O(nlogn). (worse than tree)  
+The sorting criterion is the operator &lt; defined for the elements.
+</li>
+
+<li><b>Deletion from a linked list</b>
+<center><img src="list_del.GIF" alt="img"  border="0"/></center>
+</li>
+
+<li><b>Insertion into a linked list</b>
+<center><img src="list_insert.GIF" alt="img"  border="0"/></center>
+</li>
+
+</ol>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="LoopedList"></a>
+<li><p><b>Looped list:</b>  the last node (tail), instead of points to NULL,  
+points back to a preceding, but not necessarily the first, node. 
+Interesting questions are:
+<map NAME="looped6">
+	<area SHAPE="circle" COORDS="169,306,6" HREF="loopedList.htm" target="_blank" />
+</map>
+<img SRC="loopedList.GIF" alt="img"  border="0" usemap="#looped6" align="right"/>
+<ol type='i'>
+<li>How do you detect a list is looped or not?
+Two elegant implimentations: 1. two-pointer chase:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Test a list is looped or not.
+// Idea: two pointers, one moves faster than the other.
+//	If looped, there is always a chance of catching up, and
+//	return a node on the loop, otherwise, 
+//	return NULL, which means the list is none-looped.
+</pre></td></tr></tbody></table>
+
+//code:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 200, 255);"><pre>
+list *isLooped(list *l)
+{
+	list *p1=l, *p2=l;
+        while(p1 &amp;&amp; p2)
+        {
+                p1 = p1-&gt;next;
+                if(!p2-&gt;next) 
+                        return NULL;
+
+                p2 = p2-&gt;next-&gt;next;
+		if(p1 == p2) 
+			return p1;
+
+	}
+	return NULL;
+}
+</pre></td></tr></tbody></table>
+
+2: one-pointer cut and count: 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 200);"><pre>
+// Return NULL if none-looped, 
+// otherwise, return the tail node.
+list *isLooped1(list *l)
+{
+	list *head=l; 
+	int m=0, n; 
+	while(l)
+	{
+                n = LengthBetween(head,l-&gt;next);
+                if(m&lt;n)
+                {
+                        l = l-&gt;next;
+			m = n;
+		}
+		else
+			return l;
+	}
+	return NULL;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="LLCount"></a>
+<li>How do you count how many nodes on the loop?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+// Count how many nodes on the loop
+int loopCount(list *l)
+{
+	list *node = isLooped(l);
+	if(!node)  // none-looped
+		return 0;
+
+//	be aware that 'node' is on the loop.
+        list *ptr = node-&gt;next;
+        int count = 1;  // initial
+        while(ptr != node)
+        {
+                ptr = ptr-&gt;next;
+		count++;
+	}
+	return count;
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="LLTail"></a>
+<li><b>How do you get the last node (tail) of a list in general?</b> (Beyond a normal list, it can be empty, or looped)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+list *Tail(list *l)
+{
+	if( !l ) return NULL; // screen, void empty
+
+	list *node = isLooped1(l); // check
+	if(node) return node; // in case of looped
+
+        while(l-&gt;next)
+                l = l-&gt;next;
+
+	return l; // in case of none-looped
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="LLLength"></a>
+<li>How do you know the total length the list? 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+// Count from head to tail, return length of a list.
+// It doesn't matter if the list is looped or not.
+int Length(list *l)
+{	if(!l) return 0;
+
+	list *tail = Tail(l);
+	int count=1;
+	while(l != tail)
+	{
+		count++;
+                l = l-&gt;next;
+	}
+	return count;
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="llBreak"></a>
+<li>How do you break up a looped list without losing any node?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+// Break up a looped list. There is no harm if 
+//  you call this, but the list has no loop.
+void breakLoop(list *l)
+{	if(!l) return;
+        list *tail = Tail(l); // retrieve tail
+        if( tail-&gt;next) 
+                tail-&gt;next = NULL;
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+<li>Others? (<a href="">pending</a>)</li>
+</ol>
+</p></li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="doublyLL"></a>
+<li><b>A doubly linked list</b>: Advantage: operations are easily to implement; both directions. Disadvantage: one additional reference is required.
+<center><img src="list_dbl.GIF" alt="img"  border="0" align="top"/></center>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class LinkListNode
+{
+public:
+//	Constructor:
+	LinkListNode(LinkListNode* prev, char *str, LinkListNode *next)
+		: prev(prev), next(next)
+	{
+		s = new char [strlen(str)+1];
+		strcpy(s,str);
+	};
+
+//	Destructor:
+	~LinkListNode(){delete []s;};
+
+//	Attribute:
+	char *s;
+	LinkListNode *next, *prev;
+};
+
+typedef struct LinkList 
+{
+	LinkListNode *head, 
+	LinkListNode *tail;
+} LinkList;
+</pre></td></tr></tbody></table>
+</li>
+
+<ol type="i">
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="DLInsert"></a>
+<li>How do you insert a new node before a given node in a doubly linked list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void insertBefore(LinkList *ll, char *s, LinkListNode *node)
+{
+        LinkListNode *newNode = new LinkListNode(node-&gt;prev, s, node);
+        if(! node-&gt;prev)
+                ll-&gt;head = newNode;
+        else
+                node-&gt;prev-&gt;next = newNode;
+        node-&gt;prev = newNode;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="DLAppendix"></a>
+<li>How do you appendix a new node to a doubly linked list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void insertEnd(char *s, LinkList *ll)
+{
+        LinkListNode *newNode  = new LinkListNode(ll-&gt;tail, s, NULL);
+        ll-&gt;tail-&gt;next = newNode;
+        ll-&gt;tail = newNode;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<li>How do you insert the first node to a doubly linked list?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void insertNULL(char *s, LinkList *ll)
+{
+	LinkListNode *newNode = new LinkListNode(NULL, s, NULL);
+        ll-&gt;head = newNode;
+        ll-&gt;tail = newNode;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="DLSort"></a>
+<li>How do you use a doubly linked list for sorting?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void insertSort(char *s, LinkList *ll)
+{
+        LinkListNode *node = ll-&gt;head;
+        if(!node)
+        {
+                insertNULL(s,ll);
+                return;
+        }
+        
+        while(node)
+        {
+                int n = strcmp(s,node-&gt;s);
+                if(n &gt; 0)
+                {
+                        node = node-&gt;next;
+                        continue;
+                } else
+                {
+                        insertBefore(ll,s,node);
+                        return;
+                }
+        } 
+
+        insertEnd(s,ll); // Appendix after the tail
+}
+</pre></td></tr></tbody></table>
+// Test
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	LinkList *ll = new LinkList;
+        ll-&gt;head = NULL;
+        ll-&gt;tail = NULL;
+
+	char words[][8]={"mouse","dog","quiet",
+		"pan","house","raven","zoo","tree"};
+
+	for(int i=0;i&lt;8;i++)
+	{
+		insertSort(words[i],ll);
+		printList(ll);
+	}
+}
+</pre></td></tr></tbody></table>
+// Output
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+[mouse, ]
+[dog, mouse, ]
+[dog, mouse, quiet, ]
+[dog, mouse, pan, quiet, ]
+[dog, house, mouse, pan, quiet, ]
+[dog, house, mouse, pan, quiet, raven, ]
+[dog, house, mouse, pan, quiet, raven, zoo, ]
+[dog, house, mouse, pan, quiet, raven, tree, zoo, ]
+</pre></td></tr></tbody></table>
+// For sorting method, please see another implementation 
+(<a href="#bTree">binary tree</a>), 
+which gives the similar result.
+// where the print function is:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void printList(LinkList *l)
+{       
+        printf("[");
+        LinkListNode *node = l-&gt;head;
+        while(node)
+        {
+                printf("%s, ",node-&gt;s);
+                node = node-&gt;next;
+        }
+        printf("]\n");
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<li>How do you remoe a node from a doubly linked list?
+Removing a node is easier, only requiring care with the head and tail.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void remove(LinkListNode *node, LinkList *list)
+{
+        if(!node-&gt;prev)
+                list-&gt;head = node-&gt;next;
+        else
+                node-&gt;prev-&gt;next = node-&gt;next;
+        
+        if(!node-&gt;next)
+                list-&gt;tail = node-&gt;prev;
+        else
+                node-&gt;next-&gt;prev = node-&gt;prev;
+
+        delete node;
+}
+</pre></td></tr></tbody></table>
+</li>
+</ol>
+
+
+
+<li><p><b>A double circular linked list</b>
+<center><img src="list_dbl_cir.GIF" alt="img"  border="0" align="top"/></center>
+</p></li>
+
+<li><p><b>Stack Model:</b> A stack is a list with the restriction that insertion s and deletions can be performed
+in only one position, namely, top, based on the principle of Last In First Out (LIFO).
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template&lt;class Object &gt;
+class Stack  
+{
+public:
+        virtual ~Stack();       // Default destructor
+        Stack():top(NULL){};    // Default constructor
+        Stack(const Stack &amp;rhs); // Copy constructor
+        const Stack &amp; operator = (const Stack &amp;rhs);
+        
+        bool isEmpty() const;
+        void makeEmpty() const;
+
+        void push(const Object &amp;x);
+        void pop();
+private:
+        struct ListNode
+        {
+                Object element;
+                ListNode *next;
+                ListNode(const Object &amp;e, ListNode *n=NULL)
+                        :element(e), next(n){};
+        };
+        ListNode *top;  
+};
+</pre></td></tr></tbody></table>
+<a href="stack.cpp">Stack.cpp</a>
+</p></li>
+
+<li><p><b>Queue Model:</b> Queues are lists, where insertion is done at one end, but deletion is performed at the other end.
+</p></li>
+
+<li><b>Hash table:</b> is a data structure that associates keys with values. 
+It supports efficiently loop up. 
+It works by transforming the key using a hash function into a hash, a number that the hash table uses to locate the desired value.
+Hash tables store data in pseudo-random locations, so accessing the data in a sorted manner is a very time consuming operation.</li>
+
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+#include &lt;map&gt; 
+#include &lt;string&gt;
+
+int main()
+{
+	std::map&lt;std::string, std::string&gt; phone_book;
+
+	// insert
+	phone_book["Sally Smart"] = "555-9999";
+	phone_book["John Doe"] = "555-1212";
+	phone_book["J. Random Hacker"] = "553-1337";
+
+	// loop-up
+	std::string phone = phone_book.find("John Doe")-&gt;second;
+
+	// iteration
+	std::map&lt;std::string, std::string&gt;::const_iterator i;
+	std::list&lt;std::string&gt; names;
+	for(i = phone_book.begin(); i != phone_book.end(); ++ i)
+		names.push_back(i-&gt;first);
+	unsigned int count = names.size();
+	return 0;
+}
+</pre>
+</td></tr></tbody></table>
+
+<li>There are two main efficient data structures used to represent associative arrays, the hash table and the self-balancing binary search tree.
+Hash tables have faster average lookup and insertion time.
+</li>
+
+<a name="Recursion"></a>
+<li><p><b>Recursion:</b>
+<ol type="i">
+<li>Factorial: 6! = 6 x 5 x 4 x 3 x 2 x 1 = 720
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+long factorial(long n)
+{
+	if(n&lt;1)
+		return 1;	// we set 0! = 1
+	return n*factorial(n-1);
+}
+</pre>
+</td></tr></tbody></table>
+</li>
+
+<li>Fabonacci: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...  f(n) = f(n-2)+f(n-1)
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int fibonacci(int n)
+{
+	if(n == 1 || n == 2) return 1;
+	return fibonacci(n-1) + fibonacci(n-2);
+}
+</pre></td></tr></tbody></table>
+</li>
+</ol>
+
+</p>
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="bTree"></a>
+<h4>The Binary Trees Data Structure:</h4>
+
+
+<b>List-like structures</b> (list, stack, or queue) are excellent if you have a relative small data volume, 
+and you need sequential record-processing capabilities.
+
+<p/>
+<b>Hash tables</b> provide lightning-fast record access. However, 
+the keys are in no particular order. Therefore, we cannot use hash tables 
+if we are going to do sequential record processing.
+
+<p/>
+<b>The binary tree</b> makes possible rapid data access(not quite as good as hash tables, but close enough!) and allows for sequential record processing. 
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class NODE
+{
+public:
+	NODE(char *w)
+		:left(NULL), right(NULL),count(1)
+	{
+		word = new char [strlen(w)+1];
+		strcpy(word,w);
+	};
+	~NODE(){delete []word;}
+
+	char *word; int count;
+	NODE *left, *right;
+};
+</pre></td></tr></tbody></table>
+
+// insertion
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+NODE *insert(char *word, NODE *tree)
+{
+        NODE **ptr = &amp;tree;
+
+        while(*ptr)
+        {
+                int compare = strcmp(word,(*ptr)-&gt;word);
+                if(compare &gt; 0)
+                        ptr = &amp;(*ptr)-&gt;right;
+                else if(compare &lt; 0)
+                        ptr = &amp;(*ptr)-&gt;left;
+                else
+                {
+                        (*ptr)-&gt;count ++; // repeat
+                        return tree;
+                }
+        }
+
+        *ptr = new NODE(word);
+        return tree;
+}
+</pre></td></tr></tbody></table>
+Comment: The reference used during the insertion is beautiful (advanced level). 
+The iteration loop is stopped while the  reference refers to a NULL address. 
+This null address is exactly where the new word should be inserted.  
+
+// print
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void printTree(NODE *tree)
+{
+        if(!tree) return;
+
+        printTree(tree-&gt;left);
+
+        if(tree-&gt;count&gt;1)
+                printf("%s(%d), ",tree-&gt;word,tree-&gt;count);
+        else
+                printf("%s, ",tree-&gt;word);
+
+        printTree(tree-&gt;right);
+}</pre></td></tr></tbody></table>
+// release
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void empty(TreeNode *tree)
+{
+	if(!tree) return;
+	empty(tree-&gt;left);
+	empty(tree-&gt;right);
+	delete tree;
+}
+</pre></td></tr></tbody></table>
+// Test <a href="tree.cpp">code</a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	char words[][11]={"mouse","dog","quiet",
+		"pan","house","raven","zoo","tree","abc","pen","dog"};
+
+	NODE *tree = NULL;
+	for(int i=0;i&lt;11;i++)
+		tree = insert(words[i],tree);
+
+	printTree(tree);
+	empty(tree); // Release memory
+}
+</pre></td></tr></tbody></table>
+////// output is ordered /////////
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 155);"><pre>
+abc, dog(2), house, mouse, pan, pen, quiet, raven, tree, zoo, 
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 155);"><pre>
+<a href="treeSDI.exe"><img src="treeGUI.GIF" alt="img" /></a>
+<center>(click to download an executable file to play)</center>
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<h4>Check a tree is sorted or not?</h4> 
+Let us assume that each node in a binary tree contains an integer value and two pointers to next-level nodes: "left" and "right".
+We call a tree sorted if for each node the following statement is correct:
+<i>"All values in the left subtree are less than or equal to the value of
+the node, and all values in the right subtree are greater than the value of the node."</i>
+Write a function that takes a pointer to a root of a tree and checks
+whether the tree is sorted.
+
+<ol type="i"><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="findMin"></a>
+<h4>Find the minimum value of a tree.</h4>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void findMin(NODE *t, int &amp;mi)
+{
+        if(!t) return; 
+
+        findMin(t-&gt;left, mi);
+
+        if(mi &gt; t-&gt;value)
+                mi = t-&gt;value;
+
+        findMin(t-&gt;right, mi);
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="findMax"></a>
+<h4>Find the maximum value of a tree.</h4>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void findMax(NODE *t, int &amp;ma)
+{
+        if(!t) return; 
+
+        findMax(t-&gt;left, ma);
+
+        if(ma&lt;t-&gt;value)
+                ma = t-&gt;value;
+
+        findMax(t-&gt;right, ma);
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="myTreeSort"></a>
+<h4>How do you detect whether a tree is sorted?</h4>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+bool isSorted(NODE *t)
+{
+        if(!t) return true; // trivial, no violation 
+
+        if(t-&gt;left)
+        {
+                int tmp = t-&gt;left-&gt;value; // initial
+                findMax(t-&gt;left, tmp);
+                if(tmp &gt; t-&gt;value)      // Violate 
+                        return false;
+        }
+
+        if(t-&gt;right)
+        {
+                int tmp = t-&gt;right-&gt;value; // initial
+                findMin(t-&gt;right, tmp);
+                if(tmp &lt;= t-&gt;value)  // Violate 
+                        return false;
+        }
+
+        return true;
+}
+</pre></td></tr></tbody></table>
+// <a href="myTreeSort.cpp">Test code</a>
+</li></ol>
+
+
+</li><li>
+<a name="Quicksort"></a>
+<h4>Quicksort: </h4> is the fastest sorting algorithms in practice. 
+The average computational complexity is O(n log n). The strategy is called "Divide and conquer" (D&amp;C) <img src="FenZhi.GIF" alt="img"  align="middle"/>
+Steps are:
+<ol type="i">
+	<li>Pick an element, called a pivot.</li>
+	<li>Reorder the list into two sub-list, less and greater.</li>
+	<li>Recursively sort each sub-list. </li>
+</ol>
+There are several versions of omplimentation. Here is one called in-place partition.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void swap(int &amp;a, int &amp;b){int t=a; a=b; b=t;}
+
+// "a" is an 1D array, len = end - start;
+void qSort(int *a,  int end, int start=0) 
+{
+	if (end -1 &lt;= start) return;
+	int pivot = (a[start] + a[end-1] + a[end-start])/3, 
+		left = start, right = end-1;
+	while (left&lt;right) 
+	{
+		if (a[left] &lt;= pivot)
+			left ++;
+		else 
+		{
+			right --;
+			swap(a[left], a[right]);
+		}
+	}
+	left --;
+	swap(a[left], a[start]);
+	qSort(a, left, start);
+	qSort(a, end, right);
+}
+
+void main()
+{
+	int a[9]={1,7,9,3,4,8,5,2,6};
+	qSort(a,9);
+}
+</pre></td></tr></tbody></table>
+Note: The pivot choosing is flexible. Actually, by choosing a good pivot, 
+one can achieve O(log n) space use on average.
+
+</li><li>
+<a name="BubbleSort"></a>
+<h4>Bubble sort:</h4> 
+is a straightforward and simplistic method of sorting. It needs O(n^2) comparisons to sort n items and can sort in-place.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void BubbleSort(int *a, int len)
+{
+	int i, j;
+	for(i=0; i&lt;len; i++)
+	{
+		for(j=i+1; j&lt;len; j++)
+		{
+			if(a[j]&lt;a[i])
+				swap(a[j],a[i]);
+		}
+	}
+}
+void main()
+{
+	int a[9]={1,7,9,3,4,8,5,2,6};
+	BubbleSort(a,9);
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<a name="sortComp"></a>
+<b>Sorting methods comparison:</b>
+<center>
+<table border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Name</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Best</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Average</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Worst</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Memory</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Stable</td>
+      <td
+ style="background-color: rgb(255, 204, 255); text-align: center; font-weight: bold;">Method</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">Bubble sort<br/>
+      </td>
+      <td style="text-align: center;">O(n)<br/>
+      </td>
+      <td style="text-align: center;">---<br/>
+      </td>
+      <td style="text-align: center;">O(<i>n</i><sup>2</sup>)</td>
+      <td style="text-align: center;">O(1)<br/>
+      </td>
+      <td style="text-align: center;">Yes<br/>
+      </td>
+      <td style="text-align: center;">Exchanging</td>
+    </tr>
+    <tr>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">Binary
+tree sort<br/>
+      </td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">O(<i>n</i>log(<i>n</i>))</td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">O(<i>n</i>log(<i>n</i>))</td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">O(<i>n</i>log(<i>n</i>))</td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">O(1)</td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">Yes</td>
+      <td
+ style="background-color: rgb(204, 255, 255); text-align: center;">Insertion</td>
+    </tr>
+    <tr>
+<td style="text-align: center;">Quicksort<br/></td>
+      <td style="text-align: center;">O(<i>n</i>log(<i>n</i>))</td>
+      <td style="text-align: center;">O(<i>n</i>log(<i>n</i>)</td>
+      <td style="text-align: center;">O(<i>n</i><sup>2</sup>)</td>
+      <td style="text-align: center;">O(log <i>n</i>)</td>
+      <td style="text-align: center;">No</td>
+      <td style="text-align: center;">Partitioning</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="mArray"></a>
+<h4>Multidimensional arrays</h4>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	int a[2][3]={{0,1,2},{3,4,5}}; // 2D array, [row][col]
+
+        int *pt = &amp;a[0][0]; // 1D array, for example, pt[4] is 4
+        int *pt0 = a[0];        // exactly the same above, pt0[4] = 4
+        int *pt1 = a[1];        // 1D array, start from the second row
+
+        memset(&amp;a[0][0], 0, 9*sizeof(int)); // Uniform initial 
+//	memset(a, 0, 9*sizeof(int)); // Wrong ! 
+
+//	nonuniform, dynamic declaration 
+	int **b = new int* [2]; // Two rows
+	b[0] = new int[3]; // This row has 3 elements
+	b[1] = new int[5]; // This row has 5 elements
+
+	delete []b[0];
+	delete []b[1];
+	delete []b; // Only this is not enough! Without above two, memory leek!
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="SpiralMat"></a>
+<b>Spiral initialization:</b>
+<table style="text-align: left; background-color: rgb(255, 55, 255);"
+align="right" border="1">
+<tbody>
+<tr><td>1</td> <td>2</td> <td>3</td> <td>4</td> <td>5</td></tr>
+<tr><td>16</td><td>17</td><td>18</td><td>19</td><td>6</td></tr>
+<tr><td>15</td><td>24</td><td>25</td><td>20</td><td>7</td></tr>
+<tr><td>14</td><td>23</td><td>22</td><td>21</td><td>8</td></tr>
+<tr><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td></tr>
+</tbody>
+</table>
+
+<table style="text-align: left; background-color: rgb(255, 155, 255);"
+align="right" border="1">
+<tbody>
+<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr>
+<td>12</td><td>13</td><td>14</td><td>5</td></tr>
+<tr><td>11</td><td>16</td><td>15</td><td>6</td></tr>
+<tr><td>10</td><td>9</td><td>8</td><td>7</td></tr>
+</tbody>
+</table>
+<img src="SpiralMat.GIF" alt="img"  align="right"/>
+Write a routine that initializes an N&times;N matrix like a spiral, for
+examples, N=4 and 5 the matrixes should be.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+void SpiralIni(int **A, int N)
+{
+	// (Solved. <a href="mailto:lingfa@brandeis.edu?Subject=Can you send me the code: SpiralMat.cpp?&body=Hi Lingfa,">email me asking for code </a> )
+}
+</pre>
+</td></tr></tbody></table>
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="MagicSquare"></a>
+<b>Magic Square:</b>
+A magic square is a square of side <i>s</i> can be represented by an <i>s</i>&times;<i>s</i> 2-dimensional array.
+What makes this square magical is that when you fill each cell with an integer from 1
+to <i>s</i>^2 (no duplicates), the sums of all rows, columns, and diagonals are equal.
+
+<table>
+<td>
+<table cellpadding="15" style="text-align: middle; background-color: rgb(205, 155, 255);" 
+border="1">
+<tbody>
+<tr><th colspan="3">Magic square of size 3<br/>Magic Sum = 15</th></tr>
+<tr><td> 8</td><td> 1</td><td> 6</td></tr>
+<tr><td> 3</td><td> 5</td><td> 7</td></tr>
+<tr><td> 4</td><td> 9</td><td> 2</td></tr>
+</tbody>
+</table>
+</td>
+
+<td>
+<table cellpadding="6" style="text-align: middle; background-color: rgb(215, 155, 255);" 
+border="1">
+<tbody>
+<tr><th colspan="5">Magic square of size 5<br/>Magic Sum = 65</th></tr>
+ <tr> <td>17  </td> <td>24  </td> <td> 1 </td> <td>  8 </td> <td> 15 </td></tr>
+ <tr> <td>23  </td> <td> 5  </td> <td> 7 </td> <td> 14 </td> <td> 16 </td></tr>
+ <tr> <td> 4  </td> <td> 6  </td> <td>13 </td> <td> 20 </td> <td> 22 </td></tr>
+ <tr> <td>10  </td> <td>12  </td> <td>19 </td> <td> 21 </td> <td>  3 </td></tr>
+ <tr> <td>11  </td> <td>18  </td> <td>25 </td> <td>  2 </td> <td>  9 </td></tr>
+
+</tbody>
+</table>
+</td>
+
+<td>
+<table cellpadding="2" style="text-align: middle; background-color: rgb(225, 155, 255);" 
+border="1">
+<tbody>
+<tr><th colspan="7">Magic square of size 7<br/>Magic Sum = 175</th></tr>
+ <tr> <td>  30  </td><td>  39  </td><td>  48  </td><td>   1 </td><td>   10  </td><td>  19 </td><td>   28 </td> </tr>
+ <tr> <td>  38  </td><td>  47  </td><td>   7  </td><td>   9 </td><td>   18  </td><td>  27 </td><td>   29 </td> </tr>
+ <tr> <td>  46  </td><td>   6  </td><td>   8  </td><td>  17 </td><td>   26  </td><td>  35 </td><td>   37 </td> </tr>
+ <tr> <td>   5  </td><td>  14  </td><td>  16  </td><td>  25 </td><td>   34  </td><td>  36 </td><td>   45 </td> </tr>
+ <tr> <td>  13  </td><td>  15  </td><td>  24  </td><td>  33 </td><td>   42  </td><td>  44 </td><td>    4 </td> </tr>
+ <tr> <td>  21  </td><td>  23  </td><td>  32  </td><td>  41 </td><td>   43  </td><td>   3 </td><td>   12 </td> </tr>
+ <tr> <td>  22  </td><td>  31  </td><td>  40  </td><td>  49 </td><td>    2  </td><td>  11 </td><td>   20 </td> </tr>
+</tbody>
+</table>
+</td>
+
+</table>
+
+Want make a check?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Magic Square Check for size = 7:
+Row Check:
+        sum(30,39,48,1,10,19,28) = 175
+        sum(38,47,7,9,18,27,29) = 175
+        sum(46,6,8,17,26,35,37) = 175
+        sum(5,14,16,25,34,36,45) = 175
+        sum(13,15,24,33,42,44,4) = 175
+        sum(21,23,32,41,43,3,12) = 175
+        sum(22,31,40,49,2,11,20) = 175
+Column Check:
+        sum(30,38,46,5,13,21,22) = 175
+        sum(39,47,6,14,15,23,31) = 175
+        sum(48,7,8,16,24,32,40) = 175
+        sum(1,9,17,25,33,41,49) = 175
+        sum(10,18,26,34,42,43,2) = 175
+        sum(19,27,35,36,44,3,11) = 175
+        sum(28,29,37,45,4,12,20) = 175
+Diagonal Check:
+        sum(30,47,8,25,42,3,20) = 175
+Off-diagonal Check:
+        sum(22,23,24,25,26,27,28) = 175
+</pre></td></tr></tbody></table>
+
+<center>
+<table cellpadding="2" style="text-align: middle; background-color: rgb(255, 155, 255);" 
+border="1">
+<tbody>
+<tr><th colspan="17">Magic square of size 17<br/>Magic Sum = 2465</th></tr>
+<tr><td> 155 </td><td> 174 </td><td> 193 </td><td> 212 </td><td> 231 </td><td> 250 </td><td> 269 </td><td> 288 </td><td>   1 </td><td>  20 </td><td>  39 </td><td>  58 </td><td>  77 </td><td>  96 </td><td> 115 </td><td> 134 </td><td> 153 </td></tr>
+<tr><td> 173 </td><td> 192 </td><td> 211 </td><td> 230 </td><td> 249 </td><td> 268 </td><td> 287 </td><td>  17 </td><td>  19 </td><td>  38 </td><td>  57 </td><td>  76 </td><td>  95 </td><td> 114 </td><td> 133 </td><td> 152 </td><td> 154 </td></tr>
+<tr><td> 191 </td><td> 210 </td><td> 229 </td><td> 248 </td><td> 267 </td><td> 286 </td><td>  16 </td><td>  18 </td><td>  37 </td><td>  56 </td><td>  75 </td><td>  94 </td><td> 113 </td><td> 132 </td><td> 151 </td><td> 170 </td><td> 172 </td></tr>
+<tr><td> 209 </td><td> 228 </td><td> 247 </td><td> 266 </td><td> 285 </td><td>  15 </td><td>  34 </td><td>  36 </td><td>  55 </td><td>  74 </td><td>  93 </td><td> 112 </td><td> 131 </td><td> 150 </td><td> 169 </td><td> 171 </td><td> 190 </td></tr>
+<tr><td> 227 </td><td> 246 </td><td> 265 </td><td> 284 </td><td>  14 </td><td>  33 </td><td>  35 </td><td>  54 </td><td>  73 </td><td>  92 </td><td> 111 </td><td> 130 </td><td> 149 </td><td> 168 </td><td> 187 </td><td> 189 </td><td> 208 </td></tr>
+<tr><td> 245 </td><td> 264 </td><td> 283 </td><td>  13 </td><td>  32 </td><td>  51 </td><td>  53 </td><td>  72 </td><td>  91 </td><td> 110 </td><td> 129 </td><td> 148 </td><td> 167 </td><td> 186 </td><td> 188 </td><td> 207 </td><td> 226 </td></tr>
+<tr><td> 263 </td><td> 282 </td><td>  12 </td><td>  31 </td><td>  50 </td><td>  52 </td><td>  71 </td><td>  90 </td><td> 109 </td><td> 128 </td><td> 147 </td><td> 166 </td><td> 185 </td><td> 204 </td><td> 206 </td><td> 225 </td><td> 244 </td></tr>
+<tr><td> 281 </td><td>  11 </td><td>  30 </td><td>  49 </td><td>  68 </td><td>  70 </td><td>  89 </td><td> 108 </td><td> 127 </td><td> 146 </td><td> 165 </td><td> 184 </td><td> 203 </td><td> 205 </td><td> 224 </td><td> 243 </td><td> 262 </td></tr>
+<tr><td>  10 </td><td>  29 </td><td>  48 </td><td>  67 </td><td>  69 </td><td>  88 </td><td> 107 </td><td> 126 </td><td> 145 </td><td> 164 </td><td> 183 </td><td> 202 </td><td> 221 </td><td> 223 </td><td> 242 </td><td> 261 </td><td> 280 </td>></tr>
+<tr><td>  28 </td><td>  47 </td><td>  66 </td><td>  85 </td><td>  87 </td><td> 106 </td><td> 125 </td><td> 144 </td><td> 163 </td><td> 182 </td><td> 201 </td><td> 220 </td><td> 222 </td><td> 241 </td><td> 260 </td><td> 279 </td><td>   9 </td></tr>
+<tr><td>  46 </td><td>  65 </td><td>  84 </td><td>  86 </td><td> 105 </td><td> 124 </td><td> 143 </td><td> 162 </td><td> 181 </td><td> 200 </td><td> 219 </td><td> 238 </td><td> 240 </td><td> 259 </td><td> 278 </td><td>   8 </td><td>  27 </td></tr>
+<tr><td>  64 </td><td>  83 </td><td> 102 </td><td> 104 </td><td> 123 </td><td> 142 </td><td> 161 </td><td> 180 </td><td> 199 </td><td> 218 </td><td> 237 </td><td> 239 </td><td> 258 </td><td> 277 </td><td>   7 </td><td>  26 </td><td>  45 </td></tr>
+<tr><td>  82 </td><td> 101 </td><td> 103 </td><td> 122 </td><td> 141 </td><td> 160 </td><td> 179 </td><td> 198 </td><td> 217 </td><td> 236 </td><td> 255 </td><td> 257 </td><td> 276 </td><td>   6 </td><td>  25 </td><td>  44 </td><td>  63 </td></tr>
+<tr><td> 100 </td><td> 119 </td><td> 121 </td><td> 140 </td><td> 159 </td><td> 178 </td><td> 197 </td><td> 216 </td><td> 235 </td><td> 254 </td><td> 256 </td><td> 275 </td><td>   5 </td><td>  24 </td><td>  43 </td><td>  62 </td><td>  81 </td></tr>
+<tr><td> 118 </td><td> 120 </td><td> 139 </td><td> 158 </td><td> 177 </td><td> 196 </td><td> 215 </td><td> 234 </td><td> 253 </td><td> 272 </td><td> 274 </td><td>   4 </td><td>  23 </td><td>  42 </td><td>  61 </td><td>  80 </td><td>  99 </td></tr>
+<tr><td> 136 </td><td> 138 </td><td> 157 </td><td> 176 </td><td> 195 </td><td> 214 </td><td> 233 </td><td> 252 </td><td> 271 </td><td> 273 </td><td>   3 </td><td>  22 </td><td>  41 </td><td>  60 </td><td>  79 </td><td>  98 </td><td> 117 </td></tr>
+<tr><td> 137 </td><td> 156 </td><td> 175 </td><td> 194 </td><td> 213 </td><td> 232 </td><td> 251 </td><td> 270 </td><td> 289 </td><td>   2 </td><td>  21 </td><td>  40 </td><td>  59 </td><td>  78 </td><td>  97 </td><td> 116 </td><td> 135 </td></tr>
+</tbody>
+</table>
+( <a href="MagicSq.exe">MagicSq.exe</a> )<br/>
+
+( <a href="mailto:lingfa@brandeis.edu?Subject=Can you send me the code: MagicSq.cpp?&body=Hi Lingfa,">email me asking for code </a> )
+</center>
+
+One way to generate a magic square
+<ol type="i"><li>
+Place the number 1 in the middle column of row 0.
+</li><li>
+From this starting position (original position) go up one cell and to the              
+     right one cell and place the next integer in that cell.  If moving up forces        
+     you out of bounds, wrap around and continue from the corresponding                  
+     cell in the bottom row.
+</li><li>
+Do the same thing if you go out of bounds when moving right. 
+</li><li>
+If the cell you are moving to has already been filled, drop down one cell              
+     from your original position and place the integer there instead. 
+</li><li>
+Do this until all the cells are filled.
+</li></ol>
+
+
+The Magic Sum can be calculated:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int calculateMagicSum(int s)
+{
+        return sumDownToOne(s*s)/s;
+}
+
+int sumDownToOne(int positiveNumber)
+{
+        if(positiveNumber &lt;= 1) return 1;
+        return positiveNumber + sumDownToOne(positiveNumber-1);
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<a name="wordCount"></a>
+Write a function, count how many words in a sentence.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+#include "string.h"
+#include "ctype.h"
+int wordCount(char *s)
+{
+	unsigned int pos=0,count=0,len=strlen(s);
+	while(pos&lt;len)
+	{
+                while(isspace( *(s+pos)) &amp;&amp; pos&lt;len) 
+                        pos ++; // go through space
+                                
+                if(pos&lt;len) count ++;
+                while(!isspace( *(s+pos)) &amp;&amp; pos&lt;len)
+			pos ++; // go through non-space
+	}
+	return count;
+}
+</pre>
+</td></tr></tbody></table>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="wordExtract"></a>
+Write a function to extract words from a sentence into an array.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+int wordExtract(char *s, char **word, unsigned int size)
+{
+	unsigned int pos=0,count=0,len=strlen(s);
+	char buffer[128]; // long enough for a single word, if not, not safe!
+	while(pos&lt;len)
+	{
+                while(isspace( *(s+pos)) &amp;&amp; pos&lt;len) 
+			pos ++;	// go through space
+		
+		if(pos&lt;len)
+		{
+			sscanf(s+pos, "%s", buffer);
+			int l = strlen(buffer); // 
+			word[count] = new char [l+1];
+			strcpy(word[count],buffer);
+			count ++;
+                        if(count &gt; size-1) return count; // full
+
+			pos += l;
+		}
+	}
+	return count; // return number of words
+}
+
+void main()
+{
+	char s[]={" I'd like to see a red fox. "};
+
+	int n = wordCount(s); 
+	char **word = new char* [n];
+	int m = wordExtract(s,word,n);
+
+	for(int i=0;i&lt;m;i++) delete []word[i];
+	delete []word;
+	return 0;
+}
+</pre>
+</td></tr></tbody></table>
+
+
+</li><li>
+Reverse a sentence without reversing letters in words, for example:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+//	I'd like to see a red fox.
+//	fox. red a see to like I'd
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	char s[]={" I'd like to see a red fox. "};
+
+	int n = wordCount(s); 
+	char **word = new char* [n];
+	int m = wordExtract(s,word,n);
+
+	list *l = NULL;
+	for(int i=0; i&lt;m; i++)
+		l = push(word[i], l);
+
+	printList(l); // [fox. red a see to like I'd ]
+	l = reverse(l);
+	printList(l); // [I'd like to see a red fox. ]
+
+	for(i=0;i&lt;m;i++) delete []word[i];
+	delete []word;
+
+	empty(l);
+}
+</pre></td></tr></tbody></table>
+(If you have a better solution, please send me an <a href="mailto:lingfa@brandeis.edu?Subject=Reverse a sentence&amp;body=Hi Lingfa,">email</a>)
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="sReverse"></a>
+<p><b>Use two pointers to reverse a sentence in situ without additional memory cost.</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void reverseSentance(char *s)
+{
+	reverse(s); // click here for <a href="#stringReverse">implementation </a>
+	char *start=s;
+	char *end;
+	
+	do{
+		while(isspace(*start)) 
+			start++;	// skip space
+
+		if(*start == '\0')
+			break;		// reach the end
+
+		end = start;
+		while(!isspace(*end))
+			end++;		// skip none-space
+
+                if(end-start &gt; 1)
+			reverse(start,end-start); // reverse a word
+
+		start = end;
+	}while(1);
+}
+</pre></td></tr></tbody></table>
+</p>
+</li>
+
+
+<a name="struct"></a>
+<li>struct | class | union | enum
+<ol type="i">
+<li><b>struct:</b> In C++, a structure is the same as a class except that its members are public by default.
+</li>
+
+<a name="union"></a>
+<li><b>union:</b>A union is a user-defined data type. 
+A C union type can contain only data members. A C++ union is a limited form of the class type. It can contain 
+member data, and member functions, including constructors and destructors. It cannot contain virtual functions or static data members. 
+It cannot be used as a base class, nor can it have base classes. Default access of members in a union is public.
+In C++, the union keyword is unnecessary.
+</li>
+
+<a name="enum"></a>
+<li><b>enum: </b>An enumerated type is a user-defined type consisting of a set 
+of named constants called enumerators. By default, the first enumerator has a value of 0, 
+and each successive enumerator is one larger than the value of the previous one, unless you explicitly specify a value for a particular enumerator.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Example of the enum keyword
+enum Days		// Declare enum type Days
+{
+   saturday,	// saturday = 0 by default
+   sunday = 0,	// sunday = 0 as well
+   monday,		// monday = 1
+   tuesday,		// tuesday = 2
+   wednesday,	// 3
+   thursday,	// 4
+   friday		// 5
+} today;		// Variable today has type Days
+</pre></td></tr></tbody></table>
+</li>
+
+<li><b>namespace:</b> A namespace declaration identifies and assigns a name to a declarative region. For example:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+namespace foo { int bar;}
+</pre></td></tr></tbody></table>
+Within this block, identifiers can be used exactly as they are declared. Outside of this block, the namespace specifier must be prefixed. However, with 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+using namespace foo;
+</pre></td></tr></tbody></table>
+to a piece of code, the prefix foo:: is no longer needed. 
+(Namespace resolution in C++ is hierarchical, like food::soup::chicken )
+</li></ol>
+
+</li><li>
+<a name="Constructors"></a>
+<h4>What is a constructor? What is a desconstructor?</h4>
+A member function with the same name as its class is a constructor function. 
+Constructors cannot return values.
+
+<p/>
+
+Destructor is a function which is called when objects are destroyed (deallocated).  
+Designate a function as a class's destructor by preceding the class name with a tilde (~). 
+The destructor is commonly used to "clean up" when an object is no longer necessary.
+
+<p/>
+
+Using inline initialization in constructor in the same order of your variable declarations.
+If not, vs2005 is OK, gcc show complain. If no reference, no pointer, the order does not matter; 
+otherwise, the order is important.
+
+
+
+</li><li>
+<a name="cpconstructor"></a>
+<h4>What is the difference between a copy constructor and an overloaded assignment operator?</h4>
+<ol type="i"><li>
+A copy constructor constructs a new object by using the content of the argument object.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+X(X const&amp;);	
+</pre></td></tr></tbody></table> 
+The compiler invokes a copy constructor wherever it needs to make a copy of the object. 
+If you do not provide a (explicit) copy constructor, the compiler creates a (implicit) member-by-member shallow  copy constructor for you.
+
+<p>
+An implicit shallow copy constructor is ok if there is no pointer types of members. For example,
+</p>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	A(int m, int n):v0(m),v1(n){};
+private:
+	int v0, v1;
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	A a1(1,2);
+	A a2(a1); // invoke implicit shallow constructor
+	A a3 = a2; 
+}
+</pre></td></tr></tbody></table>
+
+<p>
+If there are pointer members, create an explicit deep copy contructor to make sure the storage get copied as well.
+</p>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class X
+{
+public:
+	X(int row, int col); 
+	X(X const&amp;); // explicit copy constructor
+	~X(){delete m_array;};	
+	int index(int i)const;
+	bool set(int i, int value);
+private:
+	int m_row, m_col;
+	int *m_array;
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+X::X(int row, int col)
+: m_row(row), m_col(col)
+{
+	m_array = new int [m_row*m_col];
+	int index;
+	for(int i=0; i&lt;m_row; ++i)
+	{
+		for(int j=0; j&lt;m_col; ++j)
+		{
+			index = i*m_row + j;
+			m_array[index] = index;
+		}
+	}
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+X::X(X const&amp;x) // explicit copy constructor
+{
+	m_row = x.m_row;
+	m_col = x.m_col;
+	m_array = new int [m_row*m_col];
+	int index;
+	for(int i=0; i&lt;m_row; ++i)
+	{
+		for(int j=0; j&lt;m_col; ++j)
+		{
+			index = i*m_row + j;
+			m_array[index] = x.m_array[index];
+		}
+	}
+};
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int X::index(int i)const
+{
+	if(i&lt;0 || i&gt;m_row*m_col-1) // out-of-range
+		return -1;
+	return m_array[i];
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+bool X::set(int i, int value)
+{
+	if(i&lt;0 || i&gt;m_row*m_col-1) // out-of-range
+		return false;
+
+	m_array[i] = value;
+	return true;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	X x1(2,3);
+	X x2(x1);
+	X x3 = x1;
+	
+	int a = x1.index(3);
+	int b = x2.index(3);
+	int c = x3.index(3);
+
+	x1.set(3, 30);
+	a = x1.index(3);
+	b = x2.index(3);
+	c = x3.index(3);
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+An overloaded assignment operator assigns the contents of an existing object to another existing object of the same class.
+You can write overloaded assignment operators that take arguments of other classes, 
+but that behavior is usually implemented with implicit conversion constructors. 
+If you do not provide an overloaded assignment operator for the class, the compiler creates a default member- by-member assignment operator.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+X::X(X const&amp;x) // explicit copy constructor
+{
+	*this = x; // invoke overloaded assignment operator
+};
+X&amp; X::operator = (const  X&amp;x)
+{
+	if (this == &amp;x) 
+		return *this; // needn't
+
+	// deep copy
+	m_row = x.m_row;
+	m_col = x.m_col;
+	m_array = new int [m_row*m_col];
+	int index;
+	for(int i=0; i&lt;m_row; ++i)
+	{
+		for(int j=0; j&lt;m_col; ++j)
+		{
+			index = i*m_row + j;
+			m_array[index] = x.m_array[index];
+		}
+	}
+	return *this;
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	X x1(2,3);
+	X x2(x1);	// invoke copy constructor
+	X x3 = x1;	// invoke copy constructor
+	x3 = x1; // invoke overloaded assignment operator
+}
+</pre></td></tr></tbody></table>
+</li></ol>
+
+</li><li>
+<a name="inheritance"></a>
+<h4>Why inheritance?</h4>
+<ul><li>
+To separate abstract data type (ADT) programming from OO programming (abstract base class/interface)
+</li><li>
+To reuse/share code (implementation inheritance.)
+</li><li>
+To categorize (generalize), for example, a "fruit" is a generalization of "apple", "orange", "mango" and many others.
+</li></ul>
+
+</li><li>
+<a name="Diamond"></a>
+<h4>"Diamond problem" | virtual inheritance </h4>
+
+<table border="1" cellpadding="10" ID="Table8" align="center"><tbody>
+<tr><td style="text-align: left; background-color: rgb(255, 220, 220);"><pre>
+class A
+{
+public:
+	void foo(){};
+};
+
+class B : public A
+{
+};
+
+class C : public A
+{
+};
+
+class D : public  B, public  C
+{
+};
+
+
+int main(int argc, char *argv[])
+{
+	D *d = new D;
+	d-&gt;foo(); // <blink>ambiguous!</blink>
+	delete d;
+	return 0;
+}
+</pre></td><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	void foo(){};
+};
+
+class B : <blink>virtual</blink> public A
+{
+};
+
+class C : <blink>virtual</blink> public A
+{
+};
+
+class D : public  B, public  C
+{
+};
+
+
+int main(int argc, char *argv[])
+{
+	D *d = new D;
+	d-&gt;foo(); // fine!
+	delete d;
+	return 0;
+}
+</pre></td></tr>
+
+<tr><td style="text-align: left; background-color: rgb(255, 220, 220);"><pre>
+class A
+{
+public:
+	virtual void foo()=0;
+};
+
+class B : virtual public A
+{
+public:
+	void foo(){};
+};
+
+class C : virtual public A
+{
+public:
+	void foo(){};
+};
+
+class D : public B, public  C
+{
+
+
+}; // <blink>ambiguous!!</blink>
+
+
+int main(int argc, char *argv[])
+{
+	D *d = new D;
+	d-&gt;foo(); // <blink>ambiguous!</blink>
+	delete d;
+	return 0;
+}
+</pre></td><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	virtual void foo()=0;
+};
+
+class B :  public A
+{
+public:
+	void foo(){};
+};
+
+class C :  public A
+{
+public:
+	void foo(){};
+};
+
+class D : public  B, public  C
+{<blink>
+public:
+	void foo(){};</blink>
+};
+
+
+int main(int argc, char *argv[])
+{
+	D *d = new D;
+	d-&gt;foo(); // fine!
+	delete d;
+	return 0;
+}
+</pre></td></tr>
+
+</tbody></table>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="cCast"></a>
+<h5>Casting in C/C++</h5>
+Four casting operators:
+<table border="0" cellpadding="10" ID="Table4"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+static_cast
+const_cast
+dynamic_cast, and
+reinterpret_cast 
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10" ID="Table12"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class B {};
+class C : public B {};
+class D : public C {};
+
+void upCast(D* pd)
+{
+   C* pc = dynamic_cast&lt;C* &gt; (pd);   
+   // ok: C is a direct base class
+   // pc points to C subobject of pd 
+
+   B* pb = dynamic_cast&lt;B* &gt; (pd);   
+   // ok: B is an indirect base class
+   // pb points to B subobject of pd 
+}
+
+void downCast()
+{
+        B* pb = new D;
+        B* pb2 = new B;
+        D* pd = dynamic_cast&lt;D*&gt;(pb);
+        D* pd2 = dynamic_cast&lt;D*&gt;(pb2);
+//	error C2683: dynamic_cast : 'B' is not a polymorphic type
+}
+</pre></td></tr></tbody></table>
+
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img"  align="right" border="0"/></a>
+<a name="vFunc"></a>
+<b>Virtual function:</b> 
+a function that when overridden by a subclass will be used by the base class. 
+For example, a base class Animal could have a virtual function eat. Subclass Fish would implement 
+eat differently than subclass Wolf, but you can invoke eat on any base class instance, 
+and get the behavior of the specific subclass --- this is the beauty of polymorphism from the virtual function. 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class Animal{public:virtual int eat(){return 0;};};
+class Fish : public Animal{public:	int eat(){return 1;};};
+class Wolf : public Animal{public:	int eat(){return 2;};};
+class Cat : public Animal{};
+class Dog : public Animal{public:	virtual int eat(int amont=0){return 4;};};
+class Puppy : public Dog{public:	int eat(){return 5;};};
+
+void main()
+{
+	Animal *fish = new Fish;
+	Animal *wolf = new Wolf;
+	Animal *cat = new Cat;
+	Animal *dog = new Dog;
+	Animal *puppy = new Puppy;
+
+        int i = fish-&gt;eat(); // 1
+        int j = wolf-&gt;eat(); // 2
+        int k = cat-&gt;eat(); // 0  
+        int l = dog-&gt;eat(); // 0
+        int m = puppy-&gt;eat(); // 5
+
+	delete fish; delete wolf; delete cat; delete dog; delete puppy;
+}
+</pre>
+</td></tr></tbody></table>
+<b>Comments:</b>
+<ol type="i">
+<li><b>To receive run-time operator identification treatment must have exactly the same signature!</b>
+(1) Cat has no overriding, so Animal::eat is invoked.
+(2) Dog does have a function named eat, but with a different signature. This is NOT an overridden function. 
+(3) Though Dog has a vertual function 'eat', and Puppy is derived directly from Dog (not directly from Animal), 
+due to signature difference,  actually Puppy does not override 'eat' from his daddy, instead, it does override its grandpa!
+
+</li><li>
+A virtual function is to be chosen at <b>run-time</b>.
+ Run-time operator identification applies only to references or pointers to class object.
+
+</li><li>
+<b>What is VTABLE?</b> which is an array of function pointers for looking up virtual functions' connection.
+
+</li><li>
+<a name="pureVF"></a>
+<b>Pure Virtual Functions</b> by placing = 0 at the end of its declaration. 
+
+</li><li>
+<a name="AbstractClass"></a>
+<b>An abstract class</b> contains at least one pure virtual function. 
+You cannot declare an instance of an abstract base class; you can use it only as a base class when declaring other classes.
+
+<p>
+<b>An interface</b> is a class which contains only pure virtual functions, and has no data members.
+A client use pointer to the interface, and won't need to count the size of an interface.
+All data are hidden from the client; all data are implemented in the inherited classes.
+In naming convention, an interface class starts with "I".
+
+</p><p>
+<b>A co-class(coclass)</b> supplies concrete implementation(s) of one or more interfaces. 
+C++ does not allow to create an instance of an interface or abstract class  because of the pure virtual function(s). 
+
+</p><p>
+<b>COM (Component Object Model) </b> is a language-neural way of implementing objects
+so they can be used in different environment from where they were created in.
+COM has a well-defined interfaces which separate from the implementation. 
+Follow one uniform interface, provide multiple implementation to perform different ways at runtime  - this is the power of polymorphism. 
+
+</p><p>
+<b>IDispatch</b> is one of the standard interfaces that can be exposed by COM. 
+IDispatch derives from IUnknown, extends three methods (AddRef, Release, QueryInterface),adds four more methods(GetTypeInfoCount, GetTypeInfo, GetIDsOfNames, and Invoke).
+
+For example,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class XXX_EXPORT ITableAx : public QAxObject
+{
+public:
+    ITableAx(IDispatch *subobject = 0, QAxObject *parent = 0)
+    : QAxObject((IUnknown*)subobject, parent) { ... }
+}
+</pre></td></tr></tbody></table>
+where,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+QAxObject::QAxObject ( IUnknown * iface, QObject * parent = 0 ) 
+</pre></td></tr></tbody></table>
+Creates a QAxObject that wraps the COM object referenced by iface. parent is propagated to the QObject contructor. 
+
+</p><p>
+In PowerPoint wrapper, to add an activeX control and custimize it needs IDispatch interface,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+PowerPoint::Shape *shape = slide-&gt;Shapes()
+	-&gt;AddOLEObject(l, t, w, h, className, false);
+if(shape)
+{
+	PowerPoint::OLEFormat* fmt = shape-&gt;OLEFormat();
+	IDispatch *idispatch = fmt-&gt;Object();
+	if(idispatch)
+	{
+		XXXLib::ITableAx iobj(idispatch);
+		iobj.dynamicCall("setFileName(QString)", path );
+	}
+}
+</pre></td></tr></tbody></table>
+</p>
+
+</li><li>
+<a name="vdestructor"></a>
+<b>Can a destructor be virtual?  Can a constructor be virtual?</b>
+A destructor can be virtual, even pure virtual. 
+It is quite often used in inheritance, for example regarding memory release. 
+But a constructor cannot be virtual.
+
+</li><li>
+<a name="privateV"></a>
+<b>Can a virtual function be private?</b> 
+Yes. It works well, and it does not block anything.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	void foo() { bar();}
+private:
+	virtual void bar() { ...}
+};
+
+class B: public A
+{
+private:
+	virtual void bar() { ...}
+};
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="vFuncCall"></a>
+<b>Where does it reach if a virtual function is called from its constructor or destructor?</b> Its own one, never go beyond.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	A() { foo();} 	// invoke A::foo
+	~A() { foo();}	// invoke A::foo
+	virtual void foo(){};
+};
+class B: public A
+{
+public:
+	void foo(){};
+};
+
+void main(int argc, char* argv[])
+{
+	A * a = new B; // never reach B::foo
+	delete a;
+}
+</pre></td></tr></tbody></table>
+</li></ol>
+
+
+</li><li>
+<a name="overX"></a>
+overload, override, overload-and-override
+<ol type="i"><li>
+<b>override:</b><img src="FuGai.GIF" alt="img" align="middle"/> 
+A derived class overrides a virtual function in the base class. 
+
+</li><li>
+<b>overload:</b><img src="ChongZai.GIF" alt="img" align="middle"/> 
+Same function name but different signature.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int addup(int i, int j){return i+j;};
+int addup(int i, int j, int k){return i+j+k;};
+void main()
+{
+	int m = addup(1,2);
+	int n = addup(1,2,3);
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a href="../qt/cpp/index.html#overload">overload-and-override example</a>
+</li></ol>
+</li>
+
+<a name="Exception"></a>
+<li><b>Exception handling:</b>
+Exception handling is designed to handle the occurrence of some condition that changes the normal flow of execution. 
+The condition is called an exception. Here is an example.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+#include "stdafx.h"
+#include &lt;iostream.h&gt;
+
+class CTest
+{
+public:
+    CTest(){cout &lt;&lt; "5: Constructing CTest." &lt;&lt; endl;};
+    ~CTest(){cout &lt;&lt; "6: Destructing CTest." &lt;&lt; endl;};
+    const char *ShowReason() const { return "9: Exception in CTest class."; }
+};
+
+class D
+{
+public:
+    D();
+    ~D();
+};
+D::D(){cout &lt;&lt; "3: constructing class B." &lt;&lt; endl;}
+D::~D(){cout &lt;&lt; "7: destructing class B." &lt;&lt; endl;}
+
+void MyFunc()
+{
+    cout &lt;&lt; "2: enter MyFunc()" &lt;&lt; endl;
+	D d;
+    cout &lt;&lt; "4: still in MyFunc()" &lt;&lt; endl;
+    throw CTest();
+    cout &lt;&lt; "skipped !" &lt;&lt; endl;
+}
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+    cout &lt;&lt; "1: start in main()" &lt;&lt; endl;
+    try
+    {
+        MyFunc();
+	    cout &lt;&lt; "skipped !" &lt;&lt; endl;
+    }
+    catch( CTest E )
+    {
+        cout &lt;&lt; "8: In catch handler." &lt;&lt; endl;
+        cout &lt;&lt; E.ShowReason() &lt;&lt; endl;
+    } // Destructing E and ?
+    catch( char *str )
+    {
+        cout &lt;&lt; "Caught some other exception: " &lt;&lt; str &lt;&lt; endl;
+    }
+    cout &lt;&lt; "10: Back in main. Execution resumes here." &lt;&lt; endl;
+}
+</pre></td></tr></tbody></table>
+// The output
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+1: start in main()
+2: enter MyFunc()
+3: constructing class B.
+4: still in MyFunc()
+5: Constructing CTest.
+6: Destructing CTest.
+7: destructing class B.
+8: In catch handler.
+9: Exception in CTest class.
+6: Destructing CTest.
+6: Destructing CTest.
+10: Back in main. Execution resumes here.
+</pre></td></tr></tbody></table>
+
+<img src="CException.GIF" alt="img" align="right"/>
+<b>Exception classes in MFC:</b>
+<ol type="i">
+<li>CFileException
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	CString filename="";
+	try
+	{
+		CFile f( filename, CFile::modeRead );
+	}
+	catch( CFileException* e )
+	{
+/*
+		char msg[256];
+                e-&gt;GetErrorMessage(msg,256);
+                AfxMessageBox(msg);
+*/
+                switch(e-&gt;m_cause)
+		{
+		case CFileException::fileNotFound:
+			AfxMessageBox("The file could not be located.");
+			break;
+		case CFileException::badPath:
+			AfxMessageBox("All or part of the path is invalid.");
+			break;
+		case CFileException::accessDenied:
+			AfxMessageBox("The file could not be accessed.");
+			break;
+		default:
+			AfxMessageBox("unlisted cause.");
+			break;
+		}
+                e-&gt;Delete(); // should delete explicitly, otherwise, memory leaks!
+	}
+</pre></td></tr></tbody></table>
+// Test
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Input filename="" 
+// cause = CFileException::badPath,	
+// msg = "an unnamed file contains an invalid path."
+
+// Input filename="sdjhf"	
+// cause = CFileException::fileNotFound,
+// msg = "sdjhf was not found."
+</pre></td></tr></tbody></table>
+</li>
+
+<li>CMemoryException
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+        int size = -10;
+        try
+        {
+                double *ptr = new double [size]; // Throw CMemoryException
+//              int *ptr = new int [size]; // crash anyway
+        }
+        catch( CMemoryException* e )
+        {
+                char msg[256];
+                e-&gt;GetErrorMessage(msg,256);
+                AfxMessageBox(msg);
+//              e-&gt;Delete();
+        }
+// Output message: msg="Out of memory."
+</pre></td></tr></tbody></table>
+</li>
+</ol>
+
+</li><li>
+<a name="namespace"></a>
+<b> namespace</b>  [identifier] { namespace-body }
+A namespace declaration identifies and assigns a name to a declarative region. The identifier must be unique. 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	class dog
+	{
+	public:
+		dog(){strcpy(name, "Clifford");};
+	private:
+		char name[20];
+	};
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+namespace ur
+{
+	class dog
+	{
+	public:
+		dog(){strcpy(name, "Cajun");};
+	private:
+		char name[20];
+	};
+};
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+namespace my
+{
+	class dog
+	{
+	public:
+		dog(){strcpy(name, "Cleo");};
+	private:
+		char name[20];
+	};
+};
+</pre></td></tr></tbody></table>
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main() 
+{
+	dog *Dog  = new dog;
+	my::dog *mine = new my::dog;
+	ur::dog *your = new ur::dog;
+
+	delete Dog;
+	delete your;
+	delete mine;
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="inline"></a>
+<h5>What do you mean by inline function? </h5>
+The idea behind inline functions is to insert the code of a called function at the point where the
+function is called. If done carefully, this can improve the application's performance in exchange for increased compile time and possibly (but not always) an increase in the size of the generated binary executables.
+
+
+</li><li>
+<a name="malloc"></a>
+<h5>(new and delete) vs (malloc and free)</h5>
+<p>
+new/delete an object (C++ style) =&gt; allocate/release memory + call its constructor/destructor.  
+</p><p>
+malloc/free (C style) =&gt; the destructor and constructor do not get called.
+</p>
+
+
+</li><li>
+<a name="mThread"></a>
+<h5>Multithread Programs:</h5>
+<ol type="i">
+<li>A thread is basically a path of execution through a program. It is also the smallest unit of execution that Win32 schedules. 
+</li>
+<li>A process consists of one or more threads.  Each thread in a process operates independently.
+
+</li><li>
+<b>Difference between a thread and a process:</b>
+<ul><li>
+A process has one or more than one threads. 
+</li><li>
+Different threads of the same process can share resources, but different processes do not. 
+</li><li>
+Thread is lighter, but process is heavier.
+</li></ul>
+
+</li><li>
+Multithread Synchronization classes in MFC:
+	<ul>
+	<li>Use <b>CEvent</b> if  the application have to wait for something to happen before it can access the resource.</li>
+	<li>Use <b>CSemaphore</b> if more than one thread within the same application access this resource at one time</li>
+	<li>Use <b>CMutex</b> if more than one application can use this resource, otherwise use <b>CCriticalSection</b></li>
+	</ul>  
+</li>
+
+<a name="CMultiLock"></a>
+<li><b>CMultiLock:</b> represents the access-control mechanism used in controlling access to resources in a multithreaded program. 
+Use CMultiLock when there are multiple objects that you could use at a particular time. Use CSingleLock when you only need to wait on one object at a time.
+</li>
+</ol>
+
+</li><li>
+<a name="Singleton"></a>
+<h5>Singleton | thread safety | double-checked locking ..</h5>
+Singleton means a single object restriction to a class - 
+The constructor is hidden (private or protected). To create an instance is by a method, through which the first time call creates a new instance and returns, then, later call returns a reference of the existing object.  
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class Sgt
+{
+public:
+	static Sgt *i(); 	// instance method
+private:
+	Sgt(){}; 		// private empty constructor
+	static Sgt *sgt; 	// Singleton
+};
+</pre></td></tr></tbody></table>
+The instance method is:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Sgt *Sgt::sgt = NULL;		// initial
+Sgt *Sgt::i()
+{
+	if(!sgt)
+		sgt = new Sgt;	// creation
+	return sgt;
+}
+</pre></td></tr></tbody></table>
+<p>
+The above creation method works fine in a single-threaded environment.
+In multithreaded applications, this method is not thread-safe.
+
+</p><p>
+The danger comes from the <code>new</code> method may cost time. Let's assume the first thread is in the process of creating object but not yet assigned the pointer, meanwhile,  the second thread passes the check point, then what ???
+
+</p><p>
+To make the method thread-safe, a lock is needed.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Sgt *Sgt::i()
+{
+	MutexLocker lock; // lock in constructor, unlock in destructor
+	if(!sgt)
+		sgt = new Sgt;	// creation
+	return sgt;
+}
+</pre></td></tr></tbody></table>
+
+</p><p>
+Then, the argument is the cost. The lock is needed only for the first call, why all later calls carry the burden - this where the Double-Checked Locking Pattern (DCLP) comes.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+Sgt *Sgt::i()
+{
+	if(!sgt)		// 1st check
+	{
+		MutexLocker lock; 
+		if(!sgt)	// 2nd check
+			sgt = new Sgt;
+	}
+	return sgt;
+}
+</pre></td></tr></tbody></table>
+
+</p><p>
+Is DCLP safe? See "C++ and the Perils of Double-Checked Locking" 
+<a href="DDJ_Jul_Aug_2004_revised.pdf">here</a>
+</p>
+
+</li><li>
+<a href="point.html">
+<h5>Template: myPoint</h5>
+</a>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="3DMath"></a> 
+<h5>vector basic</h5>
+<ol type="i"> 
+<li>Coordinate: v[3]={vx,vy,vz}</li>
+<li>Length:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+double vecLen(const double *v)
+{
+    return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+}
+</pre>
+</td></tr></tbody></table>
+
+</li><li>
+<h5>Normalize:</h5>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void vecNormalize(double *v)
+{
+	double len = vecLen(v);
+	if(len == 0) return;
+
+	for(int i=0; i&lt;3; i++)
+		v[i] /= len;
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+<h5>Addition:</h5>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);">
+<pre>
+// v = v1+ v2
+void vecAdd(const double *v1, const double *v2, double *v)
+{
+    v[0] = v1[0] + v2[0];
+    v[1] = v1[1] + v2[1];
+    v[2] = v1[2] + v2[2];
+}
+</pre>
+</td></tr></tbody></table>
+
+</li><li>
+<h5>Subtraction:</h5>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// v = v2 - v1
+void vecSub(const double *v2, const double *v1, double *v)
+{
+    v[0] = v2[0] - v1[0];
+    v[1] = v2[1] - v1[1];
+    v[2] = v2[2] - v1[2];
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+<h5>Multiplication:</h5>
+<ol type="a"><li>
+A vector is multiplied by a number (scalar multiplication):
+<br/><img src="lambda_a.GIF" alt="img"   />
+
+</li><li>Dot product of two vectors: (length of a times projection of b on a)
+<br/><img src="a_dot_b.GIF" alt="img"   />
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Dot productions of two vectors, v1.v2 = v2.v1
+double vecDot(const double *v1, const double *v2)
+{
+    return v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2];
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+Cross product of two vectors: (its direction follows the right-hand-rule, its length gives an area)
+<br/><img src="axb.GIF" alt="img"   />
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Cross production of two vectors, i.e. v = v1 x v2 = - v2 x v1
+void vecCross(const double *v1, const double *v2, double *v)
+{
+    v[0] = (v1[1] * v2[2]) - (v1[2] * v2[1]);
+    v[1] = (v1[2] * v2[0]) - (v1[0] * v2[2]);
+    v[2] = (v1[0] * v2[1]) - (v1[1] * v2[0]);
+}
+</pre></td></tr></tbody></table>
+</li></ol>
+</li>
+</ol>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<li><b>Distance of a point to a line:</b>
+<table align="right">
+<tr>
+<td><img src="dist_v.GIF" alt="img"   /></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="dist_v_eq.GIF" alt="img"   /></td>
+</tr>
+</table>
+
+<a name="Dist2Line"></a>
+<br/><img src="Dist2Line.GIF" alt="img"   />
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+double Dist2Line(double *v0, const double *v1, const double *v2)
+{
+	double u[3]; vecSub(v2,v1,u);
+	double w[3]; vecSub(v0,v1,w);
+	double x[3]; vecCross(u,w,x);
+
+	return vecLen(x) / vecLen(u);
+}
+</pre></td></tr></tbody></table>
+
+<p>or, you can get the foot first, then, return distance.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// get the foot point
+// Input: v0 is a 3D point, v1, v2 are two points on a line
+void vecFoot(const double *v0, const double *v1, const double *v2, double *v)
+{
+	double v12[3]; vecSub(v2,v1,v12);
+	double v10[3]; vecSub(v0,v1,v10);
+	double c = vecDot(v12,v10)/vecDot(v12,v12);
+	for(int i=0; i&lt;3; i++)
+		v[i] = v1[i] + c*(v2[i]-v1[i]); // or *v12[i]
+}
+
+// get the distance of a point to a line
+// Input: v0 is a 3D point, v1, v2 are two points on a line
+double verticalDist(double *v0, const double *v1, const double *v2)
+{
+	double foot[3]; vecFoot(v0,v1,v2,foot);
+	return vecDist(v0,foot);
+}
+</pre></td></tr></tbody></table>
+</p></li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="Dist2Seg"></a>
+<li><p><b>Distance of a point to a line segment:</b>
+<br/><img src="dist_seg.GIF" alt="img"   />
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Get the distance of a point to a segment
+// Input: v0 is a 3D point, v1, v2 are two ends of a segment
+// Return: the shortest distance between a point to a segment
+double Dist2Seg(double *v0, const double *v1, const double *v2)
+{
+	double v12[3]; vecSub(v2,v1,v12);
+	double v10[3]; vecSub(v0,v1,v10);
+	double dotp = vecDot(v12,v10); // Dot product
+	double L = vecLen(v12); // Length of the segment
+
+	if( dotp&lt;0)
+		return vecDist(v0,v1);
+
+        if( dotp &gt; L*L)
+		return vecDist(v0,v2);
+
+	// the vertical distance is the shortest
+	double vcr[3]; vecCross(v12,v10,vcr);
+	return vecLen(vcr) / L;
+}
+</pre></td></tr></tbody></table>
+
+or, you can prersent as this:,
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+double Dist2Seg(double *v0, const double *v1, const double *v2)
+{
+	double v12[3]; vecSub(v2,v1,v12);
+	double v10[3]; vecSub(v0,v1,v10);
+
+	double c = vecDot(v12,v10) / vecDot(v12,v12);
+	if(c&lt;0)
+		return vecDist(v0,v1);
+        else if(c&gt;1)
+		return vecDist(v0,v2);
+
+//	projection of v10 stays between two ends of the segment
+	double foot[3];
+	for(int i=0; i&lt;3; i++)
+		foot[i] = v1[i] + c*(v12[i]); // v1-&gt;2 = v2-v1
+
+	return vecDist(v0,foot);
+}
+</pre></td></tr></tbody></table>
+</p></li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="Dist2Lines"></a>
+<li><p><b>Distance between two lines. (none-parallel)</b>
+<br/><img src="Dist2Lines.GIF" alt="img"   />
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Get the shortest distance btween two lines.
+// Input: lines are presented by two points, respectively.
+double Dist2Lines(const double *v1, const double *v2, 
+                  const double *v3, const double *v4)
+{
+	double u[3],v[3],w[3],x[3];
+	vecSub(v2,v1,u);
+	vecSub(v4,v3,v);
+	vecSub(v3,v1,w);
+	vecCross(u,v,x);
+	return fabs(vecDot(w,x)) / vecLen(x);
+}
+</pre></td></tr></tbody></table>
+</p></li>
+
+<li><p><b>How do you calculate the distance between a point and a plane?</b></p></li>
+
+<li><p><b>How do you know 4 points are coplane or not?</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+if(Dist2Plane(v1,v2,v3,v4) == 0) // coplane
+</pre></td></tr></tbody></table>
+</p></li>
+
+<li><p><b>How do you know 2 segments are coplane or not?</b>(The same above)
+</p></li>
+
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="sqMatrix"></a>
+<li><b>Square Matrix</b>
+<ol type="i">
+<li><b>Determinant:</b> a scalar quantity, the absolute value of a 3x3 matrix is equal to the volume of a parallelpiped basic vectors.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+double SquareMatrix::determinant( void) const 
+{
+	if(m_order == 1) 
+		return m_element[0];
+	double d = 0;
+	for ( int i = 0; i&lt;m_order; ++i) 
+	{
+		int sgn = ( i % 2) ? -1 : 1;
+		SquareMatrix cf(m_order -1);
+                cf = this-&gt;Cofactor(i,0);
+		d += sgn * m_element[i*m_width + 0] * cf.determinant();
+     }
+     return d;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<li><b>Transpose:</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void Matrix::transpose()
+{
+	Matrix T(*this);
+	swap(m_width,m_height);
+	
+	int i,j;
+	for(i=0; i&lt;m_height; i++)
+	{
+		for(j=0; j&lt;m_width; j++)
+		{
+			m_element[i*m_width+j] = T.m_element[j*T.m_width+i];
+		}
+	}
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<li><b>Adjoint:</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+SquareMatrix SquareMatrix::adjoint( void) const
+{
+     SquareMatrix b(m_order);
+
+	 for ( int i = 0; i&lt;m_order; i++)
+	 {
+		 for ( int j = 0; j&lt;m_order; j++) 
+		 {
+			int sgn = ( (i+j)%2) ? -1 : 1;
+                        SquareMatrix sq(this-&gt;Cofactor(i,j));
+			b.m_element[i*m_width + j] = sgn * sq.determinant();
+		 }
+     }
+	b.transpose();
+	return b;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+
+<li><b>Inverse:</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+SquareMatrix SquareMatrix::inverse( void)const
+{
+
+     SquareMatrix b(m_order);
+
+	 for ( int i = 0; i&lt;m_order; i++)
+	 {
+		 for ( int j = 0; j&lt;m_order; j++) 
+		 {
+			int sgn = ( (i+j)%2) ? -1 : 1;
+                        SquareMatrix sq(this-&gt;Cofactor(i,j));
+			b.m_element[i*m_width + j] = sgn * sq.determinant();
+		 }
+     }
+	b.transpose();
+        b /= this-&gt;determinant();
+	return b;
+}
+</pre></td></tr></tbody></table>
+</li>
+
+<li><b>Eigenvalues:</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void SquareMatrix::eigenvalue(double *v)const
+{
+        int N = this-&gt;m_order;
+	double* Qv = new double [N*N];
+	for(int i=0; i&lt;N; i++)
+	{
+		for(int j=0; j&lt;N; j++)
+			Qv[i*N+j] = 0;
+		Qv[i*N+i] = 1;	// The diagonal
+	}
+
+	Hessenberg(Qv);
+	QR(v);
+	delete []Qv;
+}
+</pre></td></tr></tbody></table>
+</li>
+</ol>
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="Affine"></a>
+<b>Standard Affine Transformations:</b>
+
+<ol type="i"><li>
+<b>Translation</b>
+</li><li>
+<b>Rotation</b>
+<br/><img src="rotation.GIF" alt="img"   />
+</li><li>
+<b>Scaling</b>
+</li><li>
+<b>Reflection</b>
+</li><li>
+<b>Shear</b>
+</li></ol>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="Trackball"></a>
+<b>Trackball rotation controller:</b>
+<ol type="i"><li>
+Quaternions: {x,y,z; w} for rotation axis, and the rotation angle to void Gimbal-lock.
+
+
+</li><li>
+How do you normalize a quaternion?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void TrackBall::normalize_quat(float q[4]) const
+{
+    float mag = (q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
+    for (int i = 0; i&lt;4; i++) q[i] /= mag;
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+How do you convert a rotation axis and angle to a quaternion?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void TrackBall::axis_to_quat(float a[3], float phi, float q[4])
+{
+    vnormal(a);
+    vcopy(a,q);
+    vscale(q,(float)sin(phi/2.0));
+    q[3] = (float) cos(phi/2.0);
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+How do you convert a quaternion to a rotation axis and angle?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void TrackBall::quat_to_axis(float a[3], float &amp;phi, const float q[4])const
+{
+	float c = q[3];
+	phi = (float)(acos(c)*2.);
+	float s = (float) sqrt(1.0 - c*c);
+	if ( fabs(s)&lt;0.0005 ) s = 1;
+	vcopy(q,a);
+	vscale(a,s);
+}
+</pre></td></tr></tbody></table>
+
+
+</li><li>
+How do you convert a quaternion to a rotation matrix?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void TrackBall::build_rotmatrix()
+{
+	float	*q = _currentQuat; // Alias
+
+	_m[0][0] = (float) (1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]));
+	_m[0][1] = (float) (      2.0 * (q[0] * q[1] - q[2] * q[3]));
+	_m[0][2] = (float) (      2.0 * (q[2] * q[0] + q[1] * q[3]));
+	_m[0][3] = 0.0f;
+
+
+	_m[1][0] = (float) (      2.0 * (q[0] * q[1] + q[2] * q[3]));
+	_m[1][1] = (float) (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]));
+	_m[1][2] = (float) (      2.0 * (q[1] * q[2] - q[0] * q[3]));
+	_m[1][3] = 0.0f;
+
+	_m[2][0] = (float) (      2.0 * (q[2] * q[0] - q[1] * q[3]));
+	_m[2][1] = (float) (      2.0 * (q[1] * q[2] + q[0] * q[3]));
+	_m[2][2] = (float) (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]));
+	_m[2][3] = 0.0f;
+
+	_m[3][0] = 0.0f;
+	_m[3][1] = 0.0f;
+	_m[3][2] = 0.0f;
+	_m[3][3] = 1.0f;
+}
+</pre></td></tr></tbody></table>
+
+</li><li>
+How do you convert a rotation matrix to a quaternion?
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void TrackBall::Matrix2Quaternion(double *m, double *q)const
+{
+        double T = 1 + m[0] + m[5] + m[10];
+        if(T &gt; 0.00000001) // to avoid distortions.
+        {
+                double S = sqrt(T) * 2;
+                q[0] = ( m[9] - m[6] ) / S;
+                q[1] = ( m[2] - m[8] ) / S;
+                q[2] = ( m[4] - m[1] ) / S;
+                q[3] = 0.25 * S;
+        } else // who is the major diagonal.
+                if (m[0] &gt; m[5] &amp;&amp; m[0] &gt; m[10] )       // max=0
+        {
+                double S  = sqrt( 1.0 + m[0] - m[5] - m[10] ) * 2;
+                q[0] = 0.25 * S;
+                q[1] = (m[4] + m[1] ) / S;
+                q[2] = (m[2] + m[8] ) / S;
+                q[3] = (m[9] - m[6] ) / S;
+        } else if (m[5] &gt; m[10])
+        {
+                double S = sqrt( 1.0 + m[5] - m[0] - m[10] ) * 2;
+                q[0] = (m[4] + m[1] ) / S;
+                q[1] = 0.25 * S;
+                q[2] = (m[9] + m[6] ) / S;
+                q[3] = (m[2] - m[8] ) / S;
+        } else
+        {
+                double S  = sqrt( 1.0 + m[10] - m[0] - m[5] ) * 2;
+                q[0] = (m[2] + m[8] ) / S;
+                q[1] = (m[9] + m[6] ) / S;
+                q[2] = 0.25 * S;
+                q[3] = (m[4] - m[1] ) / S;
+        }
+}
+</pre></td></tr></tbody></table>
+</li></ol>
+
+<center>( <a href="http://hopf.chem.brandeis.edu/yanglingfa/OpenGL/C60.zip">Trackball demo</a> )</center>
+
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="paramCurve"></a>
+<b>Parametric Curves:</b> 
+A parametric curve is a function Q(u) that maps a set of real values to a set of points.
+
+<ol type="i"><li>
+<b>Hermite Curves:</b> (cubic)
+<br/><img src="HermiteCurves.GIF" alt="img"   />
+
+</li><li>
+<b>Bezier Curves</b> (cubic)
+<br/><img src="CubicBezier.GIF" alt="img"   />
+</li><li>
+<b>B-Splines</b>
+<br/><img src="B-Splines.GIF" alt="img"   />
+
+</li><li>
+<b>Rendering Curves</b>
+</li></ol>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="NURBS"></a>
+<b>NURBS:</b> Non-uniform, rational B-spline (NURBS) 
+is a mathematical model commonly used in computer graphics for generating and 
+representing smooth, freeform, curves and surfaces (Bezier curves and Bezier surfaces, 
+credit for the French pioneer engineer Pierre Bezier).
+
+</li><li>
+<b>Shader</b>
+<ol type="i"><li>
+<a name="ZBuffering"></a>
+<b> Z-buffering:</b> is the management of image depth coordinates in 3D graphics 
+to decide which objects are visible, and which are hidden. Usually, the graphics card stores in the z-buffer 
+as a 2D array (x-y) with one element for each screen pixel. It compares and chooses the one closer to the observer. 
+The chosen depth is then saved to the z-buffer, replacing the old one.
+
+</li><li>
+<a name="AlphaBlending"></a>
+<b>Alpha blending:</b> alpha=0.0 represents a fully transparent color, and 1.0 represents a fully opaque color. 
+Draw Value1 over a background  color Value0 is given by:  Value = Value0(1.0 - Alpha) + Value1(Alpha).
+
+</li><li>
+<a name="vertexShader"></a>
+<b>Vertex shaders</b> allow us to manipulate the data that describes a vertex, such as it position, normal, colour, texture coordinate and so on.
+
+</li><li>
+<a name="#pixelShader"></a>
+<b>Pixel shaders</b>
+</li></ol>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="drawClock"></a>
+<h4>How to draw an analog clock?</h4>
+An analog clock has three hands (coordinate -100 to 100 in x and y). 
+Rotate painter by 360/12*(h+m/60.), 
+360/60*(m+s/60.) and 
+360/60*s, 
+then draw.
+<table border="0" cellpadding="10" ID="Table5"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	static const QPoint hourHand[3] = 
+	{
+		QPoint(7, 8),
+		QPoint(-7, 8),
+		QPoint(0, -40)
+	};
+	static const QPoint minuteHand[3] = 
+	{
+		QPoint(7, 8),
+		QPoint(-7, 8),
+		QPoint(0, -70)
+	};
+	static const QPoint secondHand[2] = 
+	{
+		QPoint(0, 0),
+		QPoint(0, -85)
+	};
+</pre></td></tr></tbody></table>
+The clock center is the widget center. Resize recalculate
+<table border="0" cellpadding="10" ID="Table6"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	int side = qMin(width(), height());
+	painter.translate(width() / 2, height() / 2); 
+	painter.scale(side / 200.0, side / 200.0);
+</pre></td></tr></tbody></table>
+
+To draw ticks, the smart way is DO NOT calculate where we should draw, instead,
+draw constantly at a fixed location with a painter rotated.
+<table border="0" cellpadding="10" ID="Table7"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	for (int i = 0; i &lt; 12; ++i) 
+	{
+		painter.drawLine(88, 0, 96, 0);
+		painter.rotate(30.0);
+	}
+</pre></td></tr></tbody></table>
+
+Styles:
+<table border="0" cellpadding="10" ID="Table9" align="center"><tbody><tr>
+<th>With Frame</th>
+<th>Frameless</th>
+<th>setMask</th>
+</tr><tr>
+
+<td style="text-align: left; background-color: rgb(204, 255, 255);">
+<img src="clock_frame.jpg"/>
+</td>
+<td style="text-align: left; background-color: rgb(204, 255, 255);">
+<img src="clock_frameless.jpg"/>
+</td>
+<td style="text-align: left; background-color: rgb(204, 255, 255);">
+<img src="clock_setMask.gif"/>
+</td>
+</tr></tbody></table>
+
+To make frameless:
+<table border="0" cellpadding="10" ID="Table10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+: QWidget(parent, Qt::FramelessWindowHint)
+</pre></td></tr></tbody></table>
+To set a mask:
+<table border="0" cellpadding="10" ID="Table11"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void AnalogClock::resizeEvent(QResizeEvent * /* event */)
+{
+    int side = qMin(width(), height());
+    QRegion maskedRegion(width()/2 - side/2,
+		height()/2 - side/2,side,side,QRegion::Ellipse);
+    setMask(maskedRegion);
+}
+</pre></td></tr></tbody></table>
+
+<a href="analogclock.cpp">Click here to see the whole implementation.</a>
+
+</li><li>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="stringRep"></a>
+String representation of a number, for example, -3.6 =&gt; "negative three point six". 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template &lt;class T>
+stringRep(T a, char *s, int accuracy=2)
+{
+	// <a href="mailto:lingfa@brandeis.edu?Subject=Can I get the code for string representation? strRep.cpp&body=Hi Lingfa,">Solved</a>
+}
+</pre></td></tr></tbody></table>
+Here are some test cases:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+#include "stdafx.h"
+#include "string.h"
+#include "math.h"
+#include "iostream.h"
+void main()
+{
+        char s[128];
+        int number = 4312;
+        stringRep(number, s, 0);
+        printf("%d =&gt; %s\n", number, s);
+        cout &lt;&lt; number &lt;&lt; " =&gt; " &lt;&lt; s &lt;&lt; endl;
+
+        double a = -123456789.678;
+        stringRep(a, s,4);
+        printf("%16.4f =&gt; %s\n",a,s);
+}
+</pre></td></tr></tbody></table>
+// Output
+<br/>4312 =&gt;  four thousand, three hundred twelve
+<br/>4312 =&gt;  four thousand, three hundred twelve
+<br/> -123456789.6780 =&gt; negative one hundred twenty three million, four hundred fifty six thousand, seven hundred eighty nine point six seven eight zero
+</li>
+
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<a name="SortedArrayMerg"></a>
+<li><p><b>How do you merge two sorted arrays?</b>
+<br/>For example, "a" is an sorted array, length n; 
+"b" is an array, length 2n, with the first half is sorted, and the second half is empty. 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+template &lt;class T>
+SortedArrayMerg(T *a, int n, T *b)
+{
+	// <a href="mailto:lingfa@brandeis.edu?Subject=Merge two sorted arrays?SortedArrayMerg.cpp&body=Hi Lingfa,">Solved</a>
+}
+</pre></td></tr></tbody></table>
+// Test
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void main()
+{
+	int a[]={ 4, 5,16,27};
+	int b[]={10,20,30,40, 0,0,0,0};
+	SortedArrayMerg(a,4,b); // mixed 
+	// output: 4, 5, 10, 16, 20, 27, 30, 40
+}
+</pre></td></tr></tbody></table>
+</p>
+
+</li><li>
+<b>Bitwise patterns</b>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// Binary AND (&amp;) Operation; OR (|);       XOR (^)
+//  0 AND 0 = 0        0 | 0 = 0             0 ^ 0 = 0
+//  0 AND 1 = 0        0 | 1 = 1             0 ^ 1 = 1
+//  1 AND 0 = 0        1 | 0 = 1             1 ^ 0 = 1
+//  1 AND 1 = 1        1 | 1 = 1             1 ^ 1 = 0
+// (both 1 give 1)    (1 if there is 1)    (1 if they are different)
+
+//	Example:
+	int a=2,b=3,c;
+//	a = 0000000000000010
+//	b = 0000000000000011
+        c = a &amp; b; // 2
+	c = a | b; // 3
+	c = a ^ b; // 1
+
+//	Shift 2 bits left
+	c = a&lt;&lt;2; // 8=0000000000001000=2^3
+</pre></td></tr></tbody></table>
+
+</li>
+
+<ol type="i"><li>
+<a name="PowerOfTwo"></a>Give a one-line C expression to test whether a number is a power of 2.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+bool PowerOfTwo(unsigned a) { return !( a&amp;(a-1) );}
+</pre></td></tr></tbody></table>
+
+<table border="1"><tr>
+<td>exp=</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>...</td>
+<td>30</td>
+<td>31</td>
+</tr>
+<tr><td>2^exp=</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>16384</td>
+<td>...</td>
+<td>1073741824</td>
+<td>2147483648</td>
+</tr>
+</table>
+
+</li><li><a name="div7"></a>
+multiply a number by 7 = (x &lt;&lt; 3) - x (Multiply by 8 (left shift by 3 bits) and then subtract the number)
+</li></ol>
+
+
+</li><li>
+<a name="const"></a>
+<code>const</code> to specify an object or a variable is not modifiable. 
+
+<ul type="i"><li>
+<b>Constant values:</b> reassign causes a compiling error.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	const int n=0; // Tell the compiler to prevent from modification
+//	n=1; // compiling error !
+</pre></td></tr></tbody></table>
+
+</li><li>
+<b>Constant pointer:</b> You can change its contents, but you cannot change its address.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	char *const cPtr = new char[3]; 
+//	cPtr = new char [4]; // Error ! You cannot modify a constant pointer
+	*cPtr = 'a'; // the same as cPtr[0] = 'a';
+	*(cPtr+1) = 'b'; // the same as cPtr[1] = 'b';
+	*(cPtr+2) = '\0'; // end of a string
+	int len = strlen(cPtr); // =2
+	delete []cPtr;
+</pre></td></tr></tbody></table>
+
+</li><li>
+<b>Constant data:</b> You can not change its content directly, but you can change its address.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	char hug[]="hug";
+	const char *bug = hug; // point to const data 
+//	bug[0] = 'b'; // Error
+	hug[0] = 'b'; // bug is "bug";
+	char s[]="beetle";
+	bug = s; //  bug points to s, which is "beetle";
+</pre></td></tr></tbody></table>
+
+</li><li>
+<b>Constant object:</b> When an object is decleared as constant:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	const A *aptr = new A;
+</pre></td></tr></tbody></table>
+You can call constant member functions only to ensure that the object is never modified.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+//	aptr-&gt;set(2); // Error
+	aptr-&gt;get(); // allow only if it is a const method. 
+</pre></td></tr></tbody></table>
+
+</li><li>
+<b>Constant Member Functions:</b> A constant member function cannot modify any data members or call any member functions that aren't constant.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	void set(int m){value=m;};
+	int get()<font color="#FF0000">const</font>{return value;}; // a constant method !
+private:
+	int value;
+};
+</pre></td></tr></tbody></table>
+
+</li><li>
+<a name="volatile"></a>
+<b>volatile:</b> = allow to modify. For example, a constant member function cannot modify any data members except for volatile members.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class A
+{
+public:
+	int get()const // a constant method 
+	{
+		value = 0; // it is ok to modify a volatile member !
+		return value;
+	}; 
+private:
+	volatile int value;
+};
+</pre></td></tr></tbody></table>
+</li></ul>
+
+</li><li>
+<a name="Unicode"></a>
+<h4>Unicode | UTF-8 | GB 2312</h4>
+<p>
+Unicode, Universal Character Set(UCS), a single unified character set,
+are first of all just code tables that assign integer numbers to characters.
+
+</p><p>
+Unicode started to replace <a href="ascii.html">ASCII</a>, ISO 8859 and EUC at all levels.
+
+</p><p>
+With the UTF-8 encoding, Unicode can be used in a convenient and backwards compatible way in environments that were designed entirely around ASCII, like Unix.
+
+</p><p>
+<b>UTF-8</b> (8-bit Universal Character Set/Unicode Transformation Format)
+is a variable-length character encoding for Unicode.
+
+</p><p>
+<b>GB 2312</b> is the registered internet name for a key official character set of the People's Republic of China, used for simplified Chinese characters. 
+</p>
+
+</li><li>
+<a name="APIs"></a>
+<h4>Win32 APIs, GDI, GDI+</h4> 
+Windows API is Microsoft's core set of application programming interfaces (APIs) available in the Microsoft Windows operating systems.
+
+Win32 APIs categories:
+<ul><li>
+kernel32.dll and advapi32.dll for file systems, devices, processes and threads, access to the Windows registry, and error handling. 
+
+</li><li>
+<b>Graphics Device Interface (GDI)</b> gdi32.dll for output devices, such as monitors, speakers, and printers.
+
+</li><li>
+user32.dll for User Interface (UI), such as  buttons and scrollbars to receive mouse and keyboard input.
+
+</li><li>
+comdlg32.dll for Common Dialog Box Library, such as status bars, progress bars, toolbars and tabs. 
+
+
+</li><li>
+shlwapi.dll for Windows Shell
+
+</li><li>
+Network Services such as NetBIOS (Network Basic Input/Output System) on TCP/IP, Winsock (Windows Sockets API), RPC (Remote procedure call)  
+
+</li></ul>
+
+<p>GDI has a Device Context (DC) output to screen or printer. A DC, like most GDI objects, is opaque.
+</p><p> 
+<b>GDI+</b> is an improved 2D graphics environment, adding advanced features such as anti-aliased 2D graphics, floating point coordinates, gradient shading, more complex path management, intrinsic support for modern graphics-file formats like JPEG and PNG, and general support for composition of affine transformations in the 2D view pipeline. 
+</p><p>
+<b>GDI+</b> uses ARGB values to represent color. 
+</p><p>
+Windows Vista has Desktop Window Manager (DWM). DWM requires graphics cards supporting DirectX 9.0 and Shader Model 2.0.  DWM uses DirectX to perform the function of compositing and rendering in the GPU, freeing the CPU of the task of managing the rendering from the off-screen buffers to the display. However, it does not affect applications painting to the off-screen buffers.
+</p>
+
+
+</li><li>
+<a name="Automation"></a>
+<h4>What is Automation?</h4>  
+Automation is a technology that allows you to take advantage of an existing program's functionality 
+and incorporate it into your own applications. This technology can greatly simplify and speed up your development.
+<ul><li>
+Automation is based on COM
+</li><li>
+Automation makes it possible for one application to manipulate objects implemented in another application, or to "expose" objects so they can be manipulated
+</li><li>
+Automation can be performed by a program written using COM-aware language, for example, VC++, Microsoft® Visual Basic® (VB), and so on
+</li></ul>
+
+More ...
+<ul><li>
+<a href="../Qt/xgen/index.html">Programming PresentationML</a>
+</li><li>
+<a href="../Qt/xgen/xgenlib.html">xgen.lib</a>
+</li><li>
+<a href="../qt/OOXML/directImg/index.html">Add images to PowerPoint 2007 by directly manipulating OpenXml</a>
+</li></ul>
+
+</li><li>
+<a name="Iterator"></a>
+<h3>Iterator</h3> 
+
+<ol type="i"><li>
+<b>What are iterators?</b>
+Iterators provide a uniform means to access items in a container.
+ Qt's container classes provide two types of iterators: Java-style iterators and STL-style iterators.
+
+</li><li>
+<a name="JavaSTL"></a>
+<b>What is the key difference between Java-style and STL-style iterators?</b>
+Java-style iterators point between items,
+STL-style iterators point directly at items. 
+
+</li><li>
+<b>Which one do you like?</b>
+Java-style iterators are more convenient to use than the STL-style iterators, 
+at the price of being slightly less efficient.
+
+
+</li><li>
+<a name="PrePost"></a>
+<b>Is there any difference between prefix ++i and postfix i++ operators?</b>
+The ++ and -- operators are available both as prefix (++i, --i) and postfix (i++, i--) operators in case of STL-Style iterators.
+The prefix versions modify the iterators and return a reference to the modified iterator; 
+the postfix versions take a copy of the iterator before they modify it, and return that copy. 
+In expressions where the return value is ignored,  using (++i, --i) are recommended, as these are slightly faster.
+</li></ol>
+
+Example:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+	QList&lt;QString&amp;gt list;
+	list &lt;&lt; "A" &lt;&lt; "B" &lt;&lt; "C" &lt;&lt; "D";
+</pre></td></tr></tbody></table>
+
+<center><table border="1" cellpadding="10"><tbody>
+<tr><th></th><th>Java-style</th><th>STL-Style</th></tr>
+
+<tr><td>Declear</td>
+<td><pre>
+QListIterator&lt;QString&gt; i(list);
+</pre></td>
+<td><pre>
+QList&lt;QString&gt;::iterator i;
+</pre></td>
+</tr>
+
+
+<tr><td>Iterate</td>
+<td><pre>
+while (i.hasNext())
+	s &lt;&lt; i.next();
+</pre></td>
+<td><pre>
+for (i = list.begin(); 
+	i != list.end(); ++i)
+	s &lt;&lt; *i;
+</pre></td>
+</tr>
+
+<tr><td>Backward</td>
+<td><pre>
+i.toBack();
+while (i.hasPrevious())
+	s &lt;&lt; i.previous();
+</pre></td>
+<td><pre>
+i = list.end();
+while (i != list.begin()) 
+{
+	--i;
+	s &lt;&lt; *i;
+}
+</pre></td>
+</tr>
+
+
+<tr><td>Key different</td>
+<td>point between items</td>
+<td>point directly at items</td>
+</tr>
+
+<tr><td>Compare</td>
+<td>more convenient<br/>slightly less efficient</td>
+<td>less convenient<br/>more efficient</td>
+</tr>
+
+</tbody></table></center>
+
+</li><li>
+<a name="funcptr"></a>
+<h3>Function pointer</h3>
+<p>
+A function pointer is a type of pointer in C/C++ which points to the address of a function.
+Just like the normal function, a function pointer has type and zero or more arguments as signature.
+</p><p>
+It is a programming technique used to simplify code (replace switch-statement) or impliment a callback function.
+</p>
+<a name="fptswitch"></a>Example 1: use function pointer to replace switch-statement.
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// same signature functions:
+double plus(double a, double b) { return a+b; }
+double minus(double a, double b) { return a-b; }
+double multiply(double a, double b) { return a*b; }
+double divide(double a, double b) { return a/b; }
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// switch implimentation
+double f(double a, double b, char op)
+{
+  switch(op)
+  {
+  default:
+  case '+': return plus(a, b);
+  case '-': return minus(a, b);
+  case '*': return multiply(a, b);
+  case '/': return divide(a, b);
+  }
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+// function pointer implimentation
+double func(double a, double b, double (*fpt)(double, double))
+{
+  return fpt(a, b); //save switch-statement!
+}
+</pre></td></tr></tbody></table>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+int main(int argc, char *argv[])
+{
+  // test:
+  double a=1, b=2;
+  double x1 = plus(a, b);
+  double x2 = minus(a, b);
+  double x3 = multiply(a, b);
+  double x4 = divide(a, b);
+
+  double y1 = f(a, b, '+');
+  double y2 = f(a, b, '-');
+  double y3 = f(a, b, '*');
+  double y4 = f(a, b, '/');
+
+  double z1 = func(a, b, plus);
+  double z2 = func(a, b, minus);
+  double z3 = func(a, b, multiply);
+  double z4 = func(a, b, divide);
+
+  Q_ASSERT(x1 == y1 &amp;&amp; y1 == z1);
+  Q_ASSERT(x2 == y2 &amp;&amp; y2 == z2);
+  Q_ASSERT(x3 == y3 &amp;&amp; y3 == z3);
+  Q_ASSERT(x4 == y4 &amp;&amp; y4 == z4);
+}
+</pre></td></tr></tbody></table>
+
+<a name="callback"></a>Example 2: callback.
+<img src="625px-Callback-notitle.svg.png" align="right"/>
+We can think a Reader in a library (low-level) in reading a Source file.
+The call to Reader::read() is made from an application (top level). 
+Meanwhile, the application has a progress bar which is expected the Reader call back to update the reading status.
+This callback can be implemented by using a function pointer.
+
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+bool Reader::read(wchar_t &amp;ch)
+{
+  if (!src) return false;
+  ++ m_readCount;
+  if (m_readCount % m_interval == 0) {
+    display();
+    if (!src) return false;
+  }
+
+  return src-&gt;get(ch);
+}
+</pre></td></tr></tbody></table>
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+void Reader::display()
+{
+  if (m_handler) <blink>(*m_funcptr)(src-&gt;position(), src-&gt;size(), m_handler);</blink>
+}
+</pre></td></tr></tbody></table>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+The above function pointer is defined as:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class Reader
+{
+public:
+  <blink>typedef bool (*funcptr)(int position, int  totalSize, void* progress);</blink>
+  bool registerProgress(funcptr f, void *h);
+private:
+  Source *src;
+  void *m_handler;
+  funcptr m_funcptr;
+};
+</pre></td></tr></tbody></table>
+A static function can be registrated: 
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+  Reader reader;
+  reader.registerProgress(Progress::progressDisplay, &amp;progress);
+</pre></td></tr></tbody></table>
+and the progress can be simply printing out the bytes:
+<table border="0" cellpadding="10"><tbody><tr><td style="text-align: left; background-color: rgb(204, 255, 255);"><pre>
+class Progress
+{
+public:
+  static bool progressDisplay(int pos, int total, void *);
+private:
+  bool display(int pos, int total);
+};
+bool Progress::progressDisplay(int pos, int total, void *p)
+{
+  return ((Progress *)p)-&gt;display(pos, total);
+}
+bool Progress::display(int pos, int total)
+{
+  printf("Read %d out of %d bytes\n",  pos, total);
+  return true;
+}
+</pre></td></tr></tbody></table>
+<a href="#TOP"><img src="../pic/toTop.GIF" alt="img" align="right" border="0"/></a>
+<p>
+If you expect the callback will drive a progress bar in the same thread, you will finally get in trouble. 
+Updating Windows is done main thread. Heavy duty job should be run in separate thread. <a href="../qt/threading/index.html">More on this topic ... </a>
+<center>
+<a href="../qt/threading/index.html"><img src="callback-progress2.jpg"/></a>
+</center>
+
+</p>
+
+
+
+</li><li>
+<h4>Basic functions</h4>
+<ul><li>
+isspace:
+<pre>
+  std::vector&lt;int&gt; spaces;
+  for (int i = 0; i &lt; 128; ++ i) {
+    if (isspace(i)) spaces.push_back(i);
+  }
+  // 9, 10, 11, 12, 13, 32
+</pre>
+Standard white-space characters are:<table border="1">
+<tr ><td ><tt>' '</tt></td><td >(0x20)</td><td >space (SPC)</td></tr>
+<tr ><td ><tt>'\t'</tt></td><td >(0x09)</td><td >horizontal tab (TAB)</td></tr>
+
+<tr ><td ><tt>'\n'</tt></td><td >(0x0a)</td><td >newline (LF)</td></tr>
+<tr ><td ><tt>'\v'</tt></td><td >(0x0b)</td><td >vertical tab (VT)</td></tr>
+<tr ><td ><tt>'\f'</tt></td><td >(0x0c)</td><td >feed (FF)</td></tr>
+<tr ><td ><tt>'\r'</tt></td><td >(0x0d)</td><td >carriage return (CR)</td></tr>
+</table>
+</li><li>
+ispunct:
+<pre>
+  fstring punctuations;
+  for (int i = 0; i &lt; 128; ++ i) {
+    if (ispunct(i)) punctuations += char(i);
+  }
+  int n = punctuations.size(); // 32
+  // !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
+</pre>
+</li></ul>
+
+</li></ol>
+
+
+<hr/>
+<img src="../pic/dig.GIF" alt="img" border="0" align="left"/>
+<img src="../pic/dig.GIF" alt="img" border="0" align="right"/>
+If you have nice questions, or elegant codes to share, 
+doesn't matter which levels, 
+<a href="mailto:lingfa@brandeis.edu?Subject=Questions and codes&body=Hi Lingfa,">email</a>
+me please.
+Playing codes is my hobbit.
+<hr/>
+<a href="../index.html"><img src="../pic/home.GIF" alt="img" border="0" align="middle"/></a>
+<a href="../cv/index.html"><img src="../pic/education.GIF" alt="img" border="0" align="middle"/></a>
+<a href="../download/index.html"><img src="../pic/PDEs_logo.GIF" alt="img" border="0" align="middle"/></a>
+<a href="../OpenGL/index.html"><img src="../pic/OpenGL_logo.GIF" alt="img" border="0" align="middle"/></a>
+<a href="../OpenGL/demo.html"><img src="../OpenGL/Lorenz_logo.GIF" alt="img" border="0" align="middle"/></a>
+<a href="uml/index.html"><img src="../pic/uml.GIF" alt="img" border="0" align="middle"/></a> 
+| <a href="../Qt/index.html"><img src="../Qt/Qt_logo.png" border="0" align="middle" height="50"/></a> 
+| <a href="http://hopf.chem.brandeis.edu/yanglingfa/download/index.html#fun">Fun games</a> 
+| <a href="http://hopf.chem.brandeis.edu/yanglingfa/math/animation/index.html">Math fun</a> 
+| <a href="http://hopf.chem.brandeis.edu/yanglingfa/java/default.htm">java</a> 
+| <a href="http://hopf.chem.brandeis.edu/yanglingfa/online/html/index.html">HTML</a> 
+| <a href="http://hopf.chem.brandeis.edu/yanglingfa/latex/index.html">LaTeX</a>
+
+|| <a href="../Qt/index.html">My Qt</a> 
+| <a href="../Qt/cpp/index.html">Qt C++</a> 
+</td></tr></table></center>
+
+</body>
+</html>
